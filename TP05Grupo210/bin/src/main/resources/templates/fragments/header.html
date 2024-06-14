@@ -1,0 +1,62 @@
+<!DOCTYPE>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+    <title>Header</title>
+    <link rel="stylesheet" data-th-href="@{/webjars/bootstrap/5.3.3/css/bosstrap.min.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<div class="nav-header" data-th-fragment="header">
+		<div class="container-fluid bg-dark text-light">
+		    <div class="row align-items-center">
+		        <div class="col-md-3">
+		            <img src="https://fi.unju.edu.ar/images/fi-logo.png" alt="Logo" class="img-fluid">
+		        </div>
+		        <div class="col-md-6 text-center">
+		            <h1>Facultad de Ingenieria</h1>
+		            <p>“Ingeniería para el bienestar de la sociedad”</p>
+		        </div>
+		        <div class="col-md-2 text-right">
+		            <nav class="navbar navbar-expand-md navbar-dark">
+		                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+		                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		                    <span class="navbar-toggler-icon"></span>
+		                </button>
+		                <div class="collapse navbar-collapse" id="navbarNav">
+		                    <ul class="navbar-nav ml-auto">
+		                        <li class="nav-item dropdown">
+		                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
+		                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                                Formularios
+		                            </a>
+		                            <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+		                                <a class="dropdown-item" href="/formularioAlumno">Alumno</a>
+		                                <a class="dropdown-item" href="/formularioDocente">Docente</a>
+		                                <div class="dropdown-divider"></div>
+		                                <a class="dropdown-item" href="/formularioCarrera">Carrera</a>
+		                                <a class="dropdown-item" href="/formularioMateria">Materia</a>
+		                            </div>
+		                        </li>
+		                        <li class="nav-item dropdown">
+		                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+		                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                                Listas
+		                            </a>
+		                            <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+		                                <a class="dropdown-item" href="/listaDeAlumnos">Alumnos</a>
+		                                <a class="dropdown-item" href="/listaDeDocentes">Docentes</a>
+		                                <div class="dropdown-divider"></div>
+		                                <a class="dropdown-item" href="/listaDeCarreras">Carreras</a>
+		                                <a class="dropdown-item" href="/listaDeMaterias">Materias</a>
+		                            </div>
+		                        </li>
+		                    </ul>
+		                </div>
+		            </nav>
+		        </div>
+		    </div>
+		</div>
+	</div>
+</body>
+</html>

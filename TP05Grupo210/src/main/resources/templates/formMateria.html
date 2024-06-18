@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<meta name="viewport" content="	width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="/css/styles.css">
+
+<title>FormularioMateria</title>
+</head>
+<body>
+
+	<header>
+		<div data-th-replace="~{fragments/header :: header}">
+		</div>
+		<div data-th-replace="~{fragments/navbar :: navbar}">
+		</div>
+	</header>
+
+	<div class="containerForm">
+		<h1>FORMULARIO MATERIA</h1>
+		<form data-th-object = "${nuevaMateria}" data-th-action="${band}?@{/modificarMateria}:@{/guardarMateria}" method="post">
+		
+		<div >
+				<label for="codigo" class="form-label">Codigo</label> 
+				<input type="text" class="form-control" id="codigo" data-th-field="*{codigo}" data-th-readonly="${band}" required>				
+			</div>
+			<div >
+				<label for="nombre" class="form-label">Nombre</label>
+				<input type="text" class="form-control" id="nombre" data-th-field="*{nombre}" required>
+			</div>
+			<div>
+				<label for="curso" class="form-label">Curso</label>
+				<input type="text" class="form-control" id="curso" data-th-field="*{curso}" required>
+			</div>
+			<div >
+				<label for="horas" class="form-label">Cantidad de Horas</label>
+				<input type="number" class="form-control" id="horas" data-th-field="*{cantHoras}">
+			</div>
+			<div >
+				<label for="modalidad" class="form-label">Modalidad</label>
+				<select id="modalidad" class="form-control" data-th-field="*{modalidad}">
+					<option value="Virtual">Virtual</option>
+					<option value="Presencial">Presencial</option>
+				</select>
+			</div>
+			<br>
+			<button type="submit" class="btn btn-primary" >Guardar</button>
+		</form>
+	</div>
+
+	<footer>
+		<div data-th-replace="~{fragments/footer :: footer}">
+		</div>
+	</footer>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

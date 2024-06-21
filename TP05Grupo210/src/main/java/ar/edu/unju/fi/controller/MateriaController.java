@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.model.Materia;
+import ar.edu.unju.fi.DTO.MateriaDTO;
 import ar.edu.unju.fi.service.MateriaService;
 
 @Controller
 public class MateriaController {
 	
 	@Autowired
-	Materia nuevaMateria;
+	MateriaDTO nuevaMateriaDTO;
 	
 	@Autowired
 	MateriaService materiaService;
@@ -31,7 +31,7 @@ public class MateriaController {
 	@GetMapping("/formularioMateria")
 	public ModelAndView getFormMateria() {
 		ModelAndView modelView = new ModelAndView("formMateria");
-		modelView.addObject("nuevaMateria", nuevaMateria);
+		modelView.addObject("nuevaMateria", nuevaMateriaDTO);
 		modelView.addObject("band", false);
 		
 		return modelView;
@@ -39,8 +39,8 @@ public class MateriaController {
 	
 	
 	@PostMapping("/guardarMateria")
-	public ModelAndView guardarMateria(@ModelAttribute("nuevaMateria")  Materia MateriaAguardar) {
-		materiaService.guardarMateria(MateriaAguardar);
+	public ModelAndView guardarMateria(@ModelAttribute("nuevaMateria")  MateriaDTO MateriaDTO) {
+		materiaService.guardarMateria(MateriaDTO);
 		return mostrarMaterias();
 	}
 	
@@ -52,8 +52,8 @@ public class MateriaController {
 	}
 	
 	@GetMapping("/modificarMateria/{codigo}")
-	public ModelAndView formModificarMateria(@PathVariable("codigo") String codigo) {
-		Materia materiaModificada = materiaService.buscarMateria(codigo);
+	public ModelAndView formModificarMateria(@PathVariable(name="codigo") String codigo) {
+		MateriaDTO materiaModificada =  materiaService.buscarMateria(codigo);
 		
 		ModelAndView modelView = new ModelAndView("formMateria");
 		modelView.addObject("nuevaMateria", materiaModificada);
@@ -63,8 +63,8 @@ public class MateriaController {
 	}
 
 	@PostMapping("/modificarMateria")
-	public ModelAndView modificarMateria(@ModelAttribute("materiaModificada") Materia materia) {
-		materiaService.modificarMateria(materia);
+	public ModelAndView modificarMateria(@ModelAttribute("nuevaMateria") MateriaDTO materiaDTO) {
+		materiaService.modificarMateria(materiaDTO);
 		return mostrarMaterias();
 	}
 

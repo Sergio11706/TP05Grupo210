@@ -1,0 +1,31 @@
+
+body {
+    
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    font-family: 'Arial', sans-serif;
+}
+
+.containerForm {
+	align-items: center;
+    background-color: #fff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 50%;
+}
+
+.containerForm p {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #666;
+}
+.container{
+	width: 50%;
+	margin: 0 auto;
+	
+}

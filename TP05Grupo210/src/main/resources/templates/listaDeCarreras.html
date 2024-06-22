@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es"  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 
+<title>LISTA DE CARRERAS</title>
+</head>
+
+<body>
+	<header>
+  		<div th:replace="~{fragments/header :: header}"></div>
+  	</header>
+		<div class="container">
+		
+		<br><br>
+		<div class="row" >
+		<div class="card" style="width: 18rem;	" data-th-each="carrera : ${ListadoCarreras}" >
+  			<div class="card-body">
+    			<h3 class="card-title" data-th-text="${carrera.nombre}" style="text-align: center;"></h3>
+    			<br>
+    			<h5 class="card-subtitle mb-2 text-body-secondary" >Codigo</h5>
+    			<p data-th-text="${carrera.codigo}"></p>
+    			<h5 class="card-subtitle mb-2 text-body-secondary" >Años</h5>
+    			<p data-th-text="${carrera.cantAnios}"></p>
+    			<br>
+    			<a data-th-href="@{'/borrarCarrera/'+${carrera.codigo}}" class="btn btn-danger">Borrar</a>					
+				<a data-th-href="@{'/modificarCarrera/'+${carrera.codigo}}" class="btn btn-warning" >Modificar</a>
+  			</div>
+		</div>
+		</div>
+</div>
+   <br><br>
+   
+	<footer>
+		<div th:replace="~{fragments/footer :: footer}"></div>
+	</footer>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

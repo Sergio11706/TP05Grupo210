@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" >
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<meta name="viewport" content="	width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="/css/styles.css">
+<title>FormularioCarrera</title>
+</head>
+<body>
+	<header>
+  		<div th:replace="~{fragments/header :: header}"></div>
+  	</header>
+<br><br>
+<div class="container">
+
+<div class="containerForm">
+	<h1>FORMULARIO CARRERA</h1>
+
+	<form data-th-object="${nuevaCarrera}" data-th-action="${band}?@{/modificarCarrera}:@{/guardarCarrera}" method="post">
+		<div >
+			<label for="codigoDTO" class="form-label">Codigo</label> 
+			<input type="text" class="form-control" id="codigoDTO" data-th-field="*{codigoDTO}" data-th-readonly="${band}" required >
+		</div>
+		
+		<div >
+			<label for="nombreDTO" class="form-label">Nombre</label>
+			<input type="text" class="form-control" id="nombreDTO" data-th-field="*{nombreDTO}" required>
+		</div>
+		
+		<div>
+			<label for="añosDTO" class="form-label">Cantidad de Años</label>
+			<input type="number" class="form-control" id="añosDTO" data-th-field="*{cantAniosDTO}" required>
+		</div>
+		<div>
+			<label for="estadoDTO" class="form-label">Estado</label>
+			 <select class="form-control" id="estadoDTO" data-th-field="*{estadoDTO}" required>
+                        <option data-th-value="true">True</option>
+                        <option data-th-value="false">False</option>
+			</select>
+		</div>
+	<br>
+		<button type="submit" class="btn btn-primary" >Guardar</button>
+		
+	</form>
+	</div>
+
+</div>
+<br><br>
+
+<footer>
+		<div th:replace="~{fragments/footer :: footer}"></div>
+	</footer>
+
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

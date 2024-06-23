@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es"  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 
+<title>LISTA DE MATERIAS</title>
+</head>
+
+
+<body>
+	<header>
+		<div data-th-replace="~{fragments/header :: header}">
+		</div>
+		<div data-th-replace="~{fragments/navbar :: navbar}">
+		</div>
+	</header>
+		
+    <br><br>
+	<div class="container">
+	<table class="table table-dark table-sm">
+			<thead>
+				<tr>
+					<th scope="col">Codigo</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Curso</th>
+					<th scope="col">Cantidad de Horas</th>
+					<th scope="col">Modalidad</th>
+					<th scope="col">Estado</th>
+				</tr>
+			</thead>
+			<tbody data-th-each="Materia : ${ListadoMaterias}">
+				<tr>
+					<td data-th-text="${Materia.codigo}"></td>
+					<td data-th-text="${Materia.nombre}"></td>
+					<td data-th-text="${Materia.curso}"></td>
+					<td data-th-text="${Materia.cantHoras}"></td>
+					<td data-th-text="${Materia.modalidad}"></td>
+					<td data-th-text="${Materia.estado}"></td>
+					<td>
+						<a data-th-href="@{'/borrarMateria/' +${Materia.codigo}}" class="btn btn-danger">Eliminar</a>
+
+						<a data-th-href="@{'/modificarMateria/' +${Materia.codigo}}" class="btn btn-warning">Modificar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<a data-th-href="@{/formularioMateria}" class="btn btn-primary">Nueva Materia</a> 
+	</div>
+	
+	<br>
+	
+	<footer>
+		<div data-th-replace="~{fragments/footer :: footer}">
+		</div>
+	</footer>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

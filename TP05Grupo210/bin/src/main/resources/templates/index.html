@@ -1,0 +1,66 @@
+<!DOCTYPE>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TP05 Grupo210</title>
+</head>
+<body>
+	<header>
+		<div data-th-replace="~{fragments/header :: header}">
+		</div>
+		<div data-th-replace="~{fragments/navbar :: navbar}">
+		</div>
+	</header>
+	
+	<div class="container" id="inicio">
+		<main>
+			<div class="container">
+			  <div class="row">
+			    <div class="col" id="acerca-de">
+			      <h1>Facultad de Ingeniería de Jujuy</h1>
+			      <p>La Facultad de Ingeniería de la Universidad Nacional de Jujuy (UNJu) es una institución educativa ubicada en la ciudad de San Salvador de Jujuy, Argentina. La facultad ofrece carreras de ingeniería en diferentes áreas, como ingeniería en computación, ingeniería en electricidad, ingeniería en mecánica, entre otras.</p>
+			    </div>
+			    <div class="col-3">
+			      <div data-th-replace="~{fragments/sidebar :: sidebar}">
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			
+			<div class="container" id="noticias">
+			    <div class="row">
+			      <div class="col-md-4">
+			        <a href="https://www.fi.unju.edu.ar/noticias-generales/4599-semana-de-la-ingenieria-2024-centro-argentino-de-ingenieros.html" class="card-link">
+			          <div class="card">
+			            <img src="https://fi.unju.edu.ar/images/2024-Noticias/semana-ingenieria-2024.jpg" class="card-img-top" alt="Imagen Ejemplo 1">
+			            <div class="card-body">
+			              <h5 class="card-title">Semana de la Ingenieria</h5>
+			              <p class="card-text">Llega la Semana de la Ingeniería: El desafío de alimentar al mundo</p>
+			            </div>
+			          </div>
+			        </a>
+			      </div>
+			      <div class="col-md-4">
+			        <a href="https://www.fi.unju.edu.ar/noticias-generales/4602-celebramos-el-dia-de-la-ingenieria.html" class="card-link">
+			          <div class="card">
+			            <img src="https://fi.unju.edu.ar/images/2024-Noticias/dia-ingenieria-argentina.jpg" class="card-img-top" alt="Imagen Ejemplo 2">
+			            <div class="card-body">
+			              <h5 class="card-title">Dia de la Ingenieria Argentina</h5>
+			              <p class="card-text">La ingeniería es mucho más que una carrera; es el motor que impulsa el progreso tecnológico, económico y social</p>
+			            </div>
+			          </div>
+			        </a>
+			      </div>
+			    </div>
+			</div>
+		</main>
+	</div>
+	<div data-th-replace="~{fragments/footer :: footer}">
+	</div>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unju.fi.DTO.AlumnoDTO;
+import ar.edu.unju.fi.map.AlumnoMapDTO;
 import ar.edu.unju.fi.model.Alumno;
 import ar.edu.unju.fi.repository.AlumnoRepository;
 import ar.edu.unju.fi.service.AlumnoService;
@@ -14,10 +16,13 @@ public class AlumnoServiceImp implements AlumnoService {
 	@Autowired
 	AlumnoRepository alumnoRepository;
 	
+	@Autowired
+	AlumnoMapDTO alumnoMapDTO;
+	
 	@Override
-	public void guardarAlumno(Alumno alumno) {
-		alumno.setEstado(true);
-		alumnoRepository.save(alumno);
+	public void guardarAlumno(AlumnoDTO alumnoDTO) {
+		alumnoDTO.setEstadoDTO(true);
+		alumnoRepository.save(alumnoMapDTO.convertirAlumnoDTOAlumno(alumnoDTO));
 	}
 
 	@Override
@@ -40,24 +45,25 @@ public class AlumnoServiceImp implements AlumnoService {
 	}
 
 	@Override
-	public void modificarAlumno(Alumno alumno) {
+	public void modificarAlumno(AlumnoDTO alumnoDTO) {
+		Alumno alumnoConvertido = alumnoMapDTO.convertirAlumnoDTOAlumno(alumnoDTO);
 		List<Alumno> alumnos = alumnoRepository.findAll();
 		for (int i = 0; i < alumnos.size(); i++) {
-	        Alumno a = alumnos.get(i);
-	        if (a.getDni().equals(alumno.getDni())) {
-	            alumnos.set(i, alumno);
-	            alumno.setEstado(true);
-	            alumnoRepository.save(alumno);
-	            break;
-	        }
-	    }
+			Alumno a = alumnos.get(i);
+			if (a.getDni().equals(alumnoConvertido.getDni())) {
+				alumnos.set(i, alumnoConvertido);
+				alumnoConvertido.setEstado(true);
+				alumnoRepository.save(alumnoConvertido);
+				break;
+			}
+		}
 	}
-
+	
 	@Override
-	public Alumno buscarAlumno(String dni) {
+	public AlumnoDTO buscarAlumno(String dni) {
 		List<Alumno> alumnos = alumnoRepository.findAll();
-		for(Alumno i : alumnos) {
-			if(i.getDni().equals(dni)) return i;
+		for(Alumno a : alumnos) {
+			if(a.getDni().equals(dni)) return alumnoMapDTO.convertirAlumnoAlumnoDTO(a);
 		}
 		return null;
 	}

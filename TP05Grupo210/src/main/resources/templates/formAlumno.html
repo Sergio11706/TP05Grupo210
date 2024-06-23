@@ -22,37 +22,37 @@
 		<form data-th-object = "${nuevoAlumno}" data-th-action="${band}?@{/modificarAlumno}:@{/guardarAlumno}" method="post">
 
 		<div >
-				<label for="dni" class="form-label">Dni</label> 
-				<input type="text" class="form-control" id="dni" data-th-field="*{dni}" data-th-readonly="${band}" required>				
+				<label for="dniDTO" class="form-label">Dni</label> 
+				<input type="text" class="form-control" id="dniDTO" data-th-field="*{dniDTO}" data-th-readonly="${band}" required>				
 			</div>
 			<div >
-				<label for="nombre" class="form-label">Nombre</label>
-				<input type="text" class="form-control" id="nombre" data-th-field="*{nombre}" required>
+				<label for="nombreDTO" class="form-label">Nombre</label>
+				<input type="text" class="form-control" id="nombreDTO" data-th-field="*{nombreDTO}" required>
 			</div>
 			<div>
-				<label for="apellido" class="form-label">Apellido</label>
-				<input type="text" class="form-control" id="apellido" data-th-field="*{apellido}" required>
+				<label for="apellidoDTO" class="form-label">Apellido</label>
+				<input type="text" class="form-control" id="apellidoDTO" data-th-field="*{apellidoDTO}" required>
 			</div>
 			<div >
-				<label for="email" class="form-label">Email</label>
-				<input type="email" class="form-control" id="email" data-th-field="*{email}" required>
+				<label for="emailDTO" class="form-label">Email</label>
+				<input type="email" class="form-control" id="emailDTO" data-th-field="*{emailDTO}" required>
 			</div>
 			<div >
-				<label for="telefono" class="form-label">Telefono</label>
-				<input type="text" class="form-control" id="telefono" data-th-field="*{telefono}">
+				<label for="telefonoDTO" class="form-label">Telefono</label>
+				<input type="text" class="form-control" id="telefonoDTO" data-th-field="*{telefonoDTO}">
 			</div>
 			<div >
-				<label for="nacimiento" class="form-label">Fecha de Nacimiento</label>
-				<input type="date" class="form-control" id="nacimiento" data-th-field="*{nacimiento}">
+				<label for="nacimientoDTO" class="form-label">Fecha de Nacimiento</label>
+				<input type="date" class="form-control" id="nacimientoDTO" data-th-field="*{nacimientoDTO}">
 			</div>
 			
 			<div >
-				<label for="domicilio" class="form-label">Domicilio</label>
-				<input type="text" class="form-control" id="domicilio" data-th-field="*{domicilio}" required>
+				<label for="domicilioDTO" class="form-label">Domicilio</label>
+				<input type="text" class="form-control" id="domicilioDTO" data-th-field="*{domicilioDTO}" required>
 			</div>
 			<div >
-				<label for="lu" class="form-label">Libreta Universitaria</label>
-				<input type="text" class="form-control" id="lu" data-th-field="*{LU}" required>
+				<label for="luDTO" class="form-label">Libreta Universitaria</label>
+				<input type="text" class="form-control" id="luDTO" data-th-field="*{LUDTO}" required>
 			</div>
 			<br>
 			<button type="submit" class="btn btn-primary" >Guardar</button>

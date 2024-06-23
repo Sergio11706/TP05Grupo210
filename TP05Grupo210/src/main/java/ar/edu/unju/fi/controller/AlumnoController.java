@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.model.Alumno;
+import ar.edu.unju.fi.DTO.AlumnoDTO;
 import ar.edu.unju.fi.service.AlumnoService;
 
 @Controller
 public class AlumnoController {
 	@Autowired
-	Alumno alumno;
+	AlumnoDTO nuevoAlumnoDTO;
 	
 	@Autowired
 	AlumnoService alumnoService;
@@ -30,15 +30,15 @@ public class AlumnoController {
 	@GetMapping("/formularioAlumno")
 	public ModelAndView getFormAlumno() {
 		ModelAndView modelView = new ModelAndView("formAlumno");
-		modelView.addObject("nuevoAlumno", alumno);
+		modelView.addObject("nuevoAlumno", nuevoAlumnoDTO);
 	
 		return modelView;
 	}
 	
 	@PostMapping("/guardarAlumno")
-	public ModelAndView guardarAlumno(@ModelAttribute("nuevoAlumno") Alumno alumno) {
+	public ModelAndView guardarAlumno(@ModelAttribute("nuevoAlumno") AlumnoDTO alumnoDTO) {
 		
-		alumnoService.guardarAlumno(alumno);
+		alumnoService.guardarAlumno(alumnoDTO);
 		
 		ModelAndView modelView = new ModelAndView("listaDeAlumnos");
 
@@ -61,7 +61,7 @@ public class AlumnoController {
 	
 	@GetMapping("/modificarAlumno/{dni}")
 	public ModelAndView formModificarAlumno(@PathVariable("dni") String dni) {
-		Alumno alumnoModificado = alumnoService.buscarAlumno(dni);
+		AlumnoDTO alumnoModificado = alumnoService.buscarAlumno(dni);
 
 		ModelAndView modelView = new ModelAndView("formAlumno");
 		modelView.addObject("nuevoAlumno", alumnoModificado);
@@ -71,20 +71,10 @@ public class AlumnoController {
 	}
 	
 	@PostMapping("/modificarAlumno")
-	public ModelAndView modificarAlumno(@ModelAttribute("alumnoModificado") Alumno alumno) {
+	public ModelAndView modificarAlumno(@ModelAttribute("alumnoModificado") AlumnoDTO alumnoDTO) {
 		
-		alumnoService.modificarAlumno(alumno);
+		alumnoService.modificarAlumno(alumnoDTO);
 		
-		ModelAndView modelView = new ModelAndView("listaDeAlumnos");
-
-		modelView.addObject("ListadoAlumnos", alumnoService.mostrarAlumnos());
-
-		return modelView;
-	}
-	
-	@GetMapping("/listaDeAlumnos")
-	public ModelAndView mostrarAlumnos() {
-
 		ModelAndView modelView = new ModelAndView("listaDeAlumnos");
 
 		modelView.addObject("ListadoAlumnos", alumnoService.mostrarAlumnos());

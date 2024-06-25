@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unju.fi.DTO.DocenteDTO;
 import ar.edu.unju.fi.service.DocenteService;
 
-
+@Controller
 public class DocenteController {
 	@Autowired
 	DocenteDTO nuevoDocenteDTO;
@@ -54,7 +55,7 @@ public class DocenteController {
 	}
 	
 	@GetMapping("/modificarDocente/{legajo}")
-	public ModelAndView formModificarDocente(@PathVariable(name="legajo") String legajo) {
+	public ModelAndView formModificarDocente(@PathVariable("legajo") String legajo) {
 		DocenteDTO docenteModificado =  docenteService.buscarDocente(legajo);
 		
 		ModelAndView modelView = new ModelAndView("formDocente");

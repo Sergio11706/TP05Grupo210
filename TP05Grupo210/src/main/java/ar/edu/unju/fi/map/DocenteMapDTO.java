@@ -1,5 +1,4 @@
 package ar.edu.unju.fi.map;
-
 import java.util.List;
 
 import org.mapstruct.InheritInverseConfiguration;

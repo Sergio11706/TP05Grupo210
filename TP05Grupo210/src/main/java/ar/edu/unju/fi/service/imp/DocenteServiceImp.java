@@ -59,8 +59,8 @@ public class DocenteServiceImp implements DocenteService{
 	@Override
 	public DocenteDTO buscarDocente(String legajo) {
 		List<Docente> docentes = docenteRepository.findAll();
-		for(Docente i : docentes) {
-			if(i.getLegajo().equals(legajo)) return docenteMapDTO.convertirDocenteEnDocenteDTO(i);
+		for(Docente d : docentes) {
+			if(d.getLegajo().equals(legajo)) return docenteMapDTO.convertirDocenteEnDocenteDTO(d);
 		}
 		return null;
 	}

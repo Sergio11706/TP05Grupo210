@@ -32,16 +32,16 @@
 			</thead>
 			<tbody data-th-each="Docente : ${ListadoDocentes}">
 				<tr>
-					<td data-th-text="${docente.legajo}"></td>
-					<td data-th-text="${docente.nombre}"></td>
-					<td data-th-text="${docente.apellido}"></td>
-					<td data-th-text="${docente.email}"></td>
-					<td data-th-text="${docente.telefono}"></td>
-					<td data-th-text="${dateria.estado}"></td>
+					<td data-th-text="${Docente.legajo}"></td>
+					<td data-th-text="${Docente.nombre}"></td>
+					<td data-th-text="${Docente.apellido}"></td>
+					<td data-th-text="${Docente.email}"></td>
+					<td data-th-text="${Docente.telefono}"></td>
+					<td data-th-text="${Docente.estado}"></td>
 					<td>
-						<a data-th-href="@{'/borrarDocente/' +${docente.legajo}}" class="btn btn-danger">Eliminar</a>
+						<a data-th-href="@{'/borrarDocente/'+${Docente.legajo}}" class="btn btn-danger">Eliminar</a>
 
-						<a data-th-href="@{'/modificarDocente/' +${docente.legajo}}" class="btn btn-warning">Modificar</a>
+						<a data-th-href="@{'/modificarDocente/'+${Docente.legajo}}" class="btn btn-warning">Modificar</a>
 					</td>
 				</tr>
 			</tbody>

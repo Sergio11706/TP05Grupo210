@@ -17,46 +17,41 @@
 		</div>
 	</header>
 
-    <br><br>
-	<div class="container">
-	<table class="table table-dark table-sm">
+	<div class="table-responsive-lg pl-md-3 pr-md-3 text-center">
+		<table class="table table-dark table-hover table-sm">
 			<thead>
 				<tr>
-					<th scope="col">DNI</th>
-					<th scope="col">Nombre</th>
-					<th scope="col">Apellido</th>
-					<th scope="col">Email</th>
-					<th scope="col">Telefono</th>
-					<th scope="col">Nacimiento</th>
-					<th scope="col">Domicilio</th>
-					<th scope="col">Libreta Universitaria</th>
-					<th scope="col">Estado</th>
+					<th class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" scope="col">DNI</th>
+					<th class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" scope="col">Nombre</th>
+					<th class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" scope="col">Apellido</th>
+					<th class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" scope="col">Email</th>
+					<th class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" scope="col">Telefono</th>
+					<th class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" scope="col">Nacimiento</th>
+					<th class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" scope="col">Domicilio</th>
+					<th class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" scope="col">Libreta Universitaria</th>
 				</tr>
 			</thead>
 			<tbody data-th-each="Alumno : ${ListadoAlumnos}">
 				<tr>
-					<td data-th-text="${Alumno.dni}"></td>
-					<td data-th-text="${Alumno.nombre}"></td>
-					<td data-th-text="${Alumno.apellido}"></td>
-					<td data-th-text="${Alumno.email}"></td>
-					<td data-th-text="${Alumno.telefono}"></td>
-					<td data-th-text="${Alumno.nacimiento}"></td>
-					<td data-th-text="${Alumno.domicilio}"></td>
-					<td data-th-text="${Alumno.LU}"></td>
-					<td data-th-text="${Alumno.estado}"></td>
+					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${Alumno.dni}"></td>
+					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${Alumno.nombre}"></td>
+					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${Alumno.apellido}"></td>
+					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${Alumno.email}"></td>
+					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${Alumno.telefono}"></td>
+					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${Alumno.nacimiento}"></td>
+					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${Alumno.domicilio}"></td>
+					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${Alumno.LU}"></td>
 					<td>
-						<a data-th-href="@{'/borrarAlumno/' +${Alumno.dni}}" class="btn btn-danger">Eliminar</a>
+						<a data-th-href="@{'/eliminarAlumno/' +${Alumno.dni}}" class="btn btn-danger mr-sm-2">Eliminar</a>
 
-						<a data-th-href="@{'/modificarAlumno/' +${Alumno.dni}}" class="btn btn-warning">Modificar</a>
+						<a data-th-href="@{'/modificarAlumno/' +${Alumno.dni}}" class="btn btn-warning ml-sm-2">Modificar</a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 
-		<a data-th-href="@{/formularioAlumno}" class="btn btn-primary">Nuevo Alumno</a> 
+		<a data-th-href="@{/formularioAlumno}" class="btn btn-primary mt-3 mb-3">Nuevo Alumno</a> 
 	</div>
-
-	<br>
 
 	<footer>
 		<div data-th-replace="~{fragments/footer :: footer}">

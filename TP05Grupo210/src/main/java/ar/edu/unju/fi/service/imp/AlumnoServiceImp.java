@@ -34,14 +34,12 @@ public class AlumnoServiceImp implements AlumnoService {
 	public void eliminarAlumno(String dni) {
 
 		List<Alumno> alumnos = alumnoRepository.findAll();
-		for (int i = 0; i < alumnos.size(); i++) {
-		      Alumno alumno = alumnos.get(i);
-		      if (alumno.getDni().equals(dni)) {
-		        alumno.setEstado(false);
-		        alumnoRepository.save(alumno);
-		        break;
-		      }
-		 }
+		for(Alumno i : alumnos) {
+			if(i.getDni().equals(dni)) {
+				i.setEstado(false);
+				alumnoRepository.save(i);
+			}
+		}
 	}
 
 	@Override

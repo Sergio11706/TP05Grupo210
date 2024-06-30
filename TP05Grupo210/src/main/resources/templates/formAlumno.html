@@ -17,45 +17,44 @@
 		</div>
 	</header>
 
-	<div class="containerForm">
-		<h1>FORMULARIO ALUMNO</h1>
+	<div class="container text-center">
+		<h1 class="mb-3 mt-2">FORMULARIO ALUMNO</h1>
 		<form data-th-object = "${nuevoAlumno}" data-th-action="${band}?@{/modificarAlumno}:@{/guardarAlumno}" method="post">
-
-		<div >
-				<label for="dniDTO" class="form-label">Dni</label> 
-				<input type="text" class="form-control" id="dniDTO" data-th-field="*{dniDTO}" data-th-readonly="${band}" required>				
+			<div class="d-flex flex-column align-items-center bg-dark text-light">
+				<div class="col-sm-8 mb-2 mt-4">
+					<label for="dniDTO" class="form-label">DNI</label> 
+					<input type="text" class="form-control" id="dniDTO" data-th-field="*{dniDTO}" data-th-readonly="${band}" required>				
+				</div>
+				<div class="col-sm-8">
+					<label for="nombreDTO" class="form-label">Nombre</label>
+					<input type="text" class="form-control" id="nombreDTO" data-th-field="*{nombreDTO}" required>
+				</div>
+				<div class="col-sm-8 mb-2 mt-2">
+					<label for="apellidoDTO" class="form-label">Apellido</label>
+					<input type="text" class="form-control" id="apellidoDTO" data-th-field="*{apellidoDTO}" required>
+				</div>
+				<div class="col-sm-8 mb-2 mt-2">
+					<label for="emailDTO" class="form-label">Email</label>
+					<input type="email" class="form-control" id="emailDTO" data-th-field="*{emailDTO}" required>
+				</div>
+				<div class="col-sm-8 mb-2 mt-2">
+					<label for="telefonoDTO" class="form-label">Telefono</label>
+					<input type="text" class="form-control" id="telefonoDTO" data-th-field="*{telefonoDTO}">
+				</div>
+				<div class="col-sm-8 mb-2 mt-2">
+					<label for="nacimientoDTO" class="form-label">Fecha de Nacimiento</label>
+					<input type="date" class="form-control" id="nacimientoDTO" data-th-field="*{nacimientoDTO}">
+				</div>
+				<div class="col-sm-8 mb-2 mt-2">
+					<label for="domicilioDTO" class="form-label">Domicilio</label>
+					<input type="text" class="form-control" id="domicilioDTO" data-th-field="*{domicilioDTO}" required>
+				</div>
+				<div class="col-sm-8 mb-4 mt-2">
+					<label for="luDTO" class="form-label">Libreta Universitaria</label>
+					<input type="text" class="form-control" id="luDTO" data-th-field="*{LUDTO}" required>
+				</div>
 			</div>
-			<div >
-				<label for="nombreDTO" class="form-label">Nombre</label>
-				<input type="text" class="form-control" id="nombreDTO" data-th-field="*{nombreDTO}" required>
-			</div>
-			<div>
-				<label for="apellidoDTO" class="form-label">Apellido</label>
-				<input type="text" class="form-control" id="apellidoDTO" data-th-field="*{apellidoDTO}" required>
-			</div>
-			<div >
-				<label for="emailDTO" class="form-label">Email</label>
-				<input type="email" class="form-control" id="emailDTO" data-th-field="*{emailDTO}" required>
-			</div>
-			<div >
-				<label for="telefonoDTO" class="form-label">Telefono</label>
-				<input type="text" class="form-control" id="telefonoDTO" data-th-field="*{telefonoDTO}">
-			</div>
-			<div >
-				<label for="nacimientoDTO" class="form-label">Fecha de Nacimiento</label>
-				<input type="date" class="form-control" id="nacimientoDTO" data-th-field="*{nacimientoDTO}">
-			</div>
-			
-			<div >
-				<label for="domicilioDTO" class="form-label">Domicilio</label>
-				<input type="text" class="form-control" id="domicilioDTO" data-th-field="*{domicilioDTO}" required>
-			</div>
-			<div >
-				<label for="luDTO" class="form-label">Libreta Universitaria</label>
-				<input type="text" class="form-control" id="luDTO" data-th-field="*{LUDTO}" required>
-			</div>
-			<br>
-			<button type="submit" class="btn btn-primary" >Guardar</button>
+			<button type="submit" class="btn btn-primary col-sm-4 mt-3 mb-3" >Guardar</button>
 		</form>
 	</div>
 

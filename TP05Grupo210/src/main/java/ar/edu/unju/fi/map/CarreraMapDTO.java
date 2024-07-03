@@ -17,6 +17,8 @@ public interface CarreraMapDTO {
 	@Mapping(source="nombre", target="nombreDTO")
 	@Mapping(source="cantAnios", target="cantAniosDTO")
 	@Mapping(source="estado", target="estadoDTO")
+	@Mapping(source="materias", target="materiaDTO")
+	@Mapping(source="alumnos", target="alumnoDTO")
 	
 	CarreraDTO convertirCarreraAcarreraDTO(Carrera c);
 	

@@ -13,21 +13,23 @@ import ar.edu.unju.fi.service.AlumnoService;
 
 @Service
 public class AlumnoServiceImp implements AlumnoService {
-	@Autowired
-	AlumnoRepository alumnoRepository;
 	
 	@Autowired
 	AlumnoMapDTO alumnoMapDTO;
 	
+	@Autowired
+	AlumnoRepository alumnoRepository;
+	
+	
 	@Override
-	public void guardarAlumno(AlumnoDTO alumnoDTO) {
-		alumnoDTO.setEstadoDTO(true);
-		alumnoRepository.save(alumnoMapDTO.convertirAlumnoDTOAlumno(alumnoDTO));
+	public void guardarAlumno(Alumno alumno) {
+		alumno.setEstado(true);
+		alumnoRepository.save(alumno);
 	}
 
 	@Override
-	public List<Alumno> mostrarAlumnos() {
-		return alumnoRepository.findAlumnoByEstado(true);
+	public List<AlumnoDTO> mostrarAlumnos() {
+		return alumnoMapDTO.convertirListaAlumnosListaAlumnosDTO(alumnoRepository.findAlumnoByEstado(true));
 	}
 
 	@Override
@@ -43,25 +45,24 @@ public class AlumnoServiceImp implements AlumnoService {
 	}
 
 	@Override
-	public void modificarAlumno(AlumnoDTO alumnoDTO) {
-		Alumno alumnoConvertido = alumnoMapDTO.convertirAlumnoDTOAlumno(alumnoDTO);
+	public void modificarAlumno(Alumno alumno) {
 		List<Alumno> alumnos = alumnoRepository.findAll();
 		for (int i = 0; i < alumnos.size(); i++) {
 			Alumno a = alumnos.get(i);
-			if (a.getDni().equals(alumnoConvertido.getDni())) {
-				alumnos.set(i, alumnoConvertido);
-				alumnoConvertido.setEstado(true);
-				alumnoRepository.save(alumnoConvertido);
+			if (a.getDni().equals(alumno.getDni())) {
+				//alumnos.set(i, alumno);
+				alumno.setEstado(true);
+				alumnoRepository.save(alumno);
 				break;
 			}
 		}
 	}
 	
 	@Override
-	public AlumnoDTO buscarAlumno(String dni) {
+	public Alumno buscarAlumno(String dni) {
 		List<Alumno> alumnos = alumnoRepository.findAll();
 		for(Alumno a : alumnos) {
-			if(a.getDni().equals(dni)) return alumnoMapDTO.convertirAlumnoAlumnoDTO(a);
+			if(a.getDni().equals(dni)) return a;
 		}
 		return null;
 	}

@@ -29,22 +29,30 @@
 					<th class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" scope="col">Nacimiento</th>
 					<th class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" scope="col">Domicilio</th>
 					<th class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" scope="col">Libreta Universitaria</th>
+					<th class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" scope="col">Materias</th>
+					<th class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" scope="col">Carrera</th>
 				</tr>
 			</thead>
-			<tbody data-th-each="Alumno : ${ListadoAlumnos}">
+			<tbody data-th-each="AlumnoDTO : ${ListadoAlumnos}">
 				<tr>
-					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${Alumno.dni}"></td>
-					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${Alumno.nombre}"></td>
-					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${Alumno.apellido}"></td>
-					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${Alumno.email}"></td>
-					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${Alumno.telefono}"></td>
-					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${Alumno.nacimiento}"></td>
-					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${Alumno.domicilio}"></td>
-					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${Alumno.LU}"></td>
+					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${AlumnoDTO.dniDTO}"></td>
+					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${AlumnoDTO.nombreDTO}"></td>
+					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${AlumnoDTO.apellidoDTO}"></td>
+					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${AlumnoDTO.emailDTO}"></td>
+					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${AlumnoDTO.telefonoDTO}"></td>
+					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${AlumnoDTO.nacimientoDTO}"></td>
+					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${AlumnoDTO.domicilioDTO}"></td>
+					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${AlumnoDTO.LUDTO}"></td>
+					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2">
+                        <ul>
+                            <li data-th-each="Alumno : ${MateriaDTO.alumnosDTO}" data-th-text="${Alumno.dni + ' ' + Alumno.nombre + ' ' + Alumno.apellido}"></li>
+                        </ul>
+                    </td>
+					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${AlumnoDTO.carreraDTO.codigo}+' '+${AlumnoDTO.carreraDTO.nombre}+' '+${AlumnoDTO.carreraDTO.cantAnios}"></td>
 					<td>
-						<a data-th-href="@{'/eliminarAlumno/' +${Alumno.dni}}" class="btn btn-danger mr-sm-2">Eliminar</a>
+						<a data-th-href="@{'/eliminarAlumno/' +${AlumnoDTO.dniDTO}}" class="btn btn-danger mr-sm-2">Eliminar</a>
 
-						<a data-th-href="@{'/modificarAlumno/' +${Alumno.dni}}" class="btn btn-warning ml-sm-2">Modificar</a>
+						<a data-th-href="@{'/modificarAlumno/' +${AlumnoDTO.dniDTO}}" class="btn btn-warning ml-sm-2">Modificar</a>
 					</td>
 				</tr>
 			</tbody>

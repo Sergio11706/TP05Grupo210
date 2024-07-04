@@ -28,8 +28,6 @@
 					<th class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" scope="col">Modalidad</th>
 					<th class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" scope="col">Alumnos</th>
 					<th class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" scope="col">Docente</th>
-					<th class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" scope="col">Carrera</th>
-					<th class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" scope="col">Estado</th>
 				</tr>
 			</thead>
 			<tbody data-th-each="MateriaDTO : ${ListadoMaterias}">
@@ -45,8 +43,6 @@
                         </ul>
                     </td>
                     <td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${MateriaDTO.docenteDTO.legajo}+' '+${MateriaDTO.docenteDTO.nombre}+' '+${MateriaDTO.docenteDTO.apellido}"></td>
-					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${MateriaDTO.carreraDTO.codigo}+' '+${MateriaDTO.carreraDTO.nombre}+' '+${MateriaDTO.carreraDTO.cantAnios}"></td>
-					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${MateriaDTO.estadoDTO}"></td>
 					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2">
 						<a data-th-href="@{'/borrarMateria/' +${MateriaDTO.codigoDTO}}" class="btn btn-danger mr-sm-2">Eliminar</a>
 

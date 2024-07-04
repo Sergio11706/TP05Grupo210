@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<meta name="viewport" content="	width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="/css/styles.css">
+
+<title>IncripcionMateria</title>
+</head>
+<body>
+
+	<header>
+		<div data-th-replace="~{fragments/header :: header}">
+		</div>
+		<div data-th-replace="~{fragments/navbar :: navbar}">
+		</div>
+	</header>
+
+	<div class="container-sm text-center">
+		<h1 class="mb-3 mt-2">INSCRIPCION A MATERIA</h1>
+		<form data-th-object="${nuevoAlumno}" data-th-action="${band}?@{/modificarAlumno}:@{/guardarAlumno}" method="post">
+			<div class="d-flex flex-column align-items-center bg-dark text-light">
+				<div class="mt-4 mb-4 col-sm-8">
+					<label class="form-label">Alumnos</label>
+					<select class="form-control" data-th-field="*{alumnos}" required multiple>
+						<option data-th-each="Alumno : ${alumnos}" data-th-value="${Alumno.dni}" data-th-text="${Alumno.dni + ' ' + Alumno.nombre + ' ' + Alumno.apellido + ' ' + Alumno.LU}"></option>
+					</select>
+				</div>
+				<div class="mt-4 mb-4 col-sm-8">
+					<label class="form-label">Materias</label>
+					<select class="form-control" data-th-field="*{materias}" required multiple>
+						<option data-th-each="Materia : ${materias}" data-th-value="${Materia.codigo}" data-th-text="${Materia.codigo + ' ' + Materia.nombre}"></option>
+					</select>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary col-sm-2 mt-3 mb-3">Guardar</button>
+		</form>
+	</div>
+	
+	<footer>
+		<div data-th-replace="~{fragments/footer :: footer}">
+		</div>
+	</footer>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

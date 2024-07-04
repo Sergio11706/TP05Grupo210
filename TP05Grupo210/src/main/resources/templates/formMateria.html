@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -17,35 +17,59 @@
 		</div>
 	</header>
 
-	<div class="containerForm">
-		<h1>FORMULARIO MATERIA</h1>
+	<div class="container text-center">
+		<h1 class="mb-3 mt-2">FORMULARIO MATERIA</h1>
 		<form data-th-object = "${nuevaMateria}" data-th-action="${band}?@{/modificarMateria}:@{/guardarMateria}" method="post">
 		
-		<div >
-				<label for="codigoDTO" class="form-label">Codigo</label> 
-				<input type="text" class="form-control" id="codigoDTO" data-th-field="*{codigoDTO}" data-th-readonly="${band}" required>				
+		<div class="d-flex flex-column align-items-center bg-dark text-light">
+			<div class="col-sm-8 mb-2 mt-4">
+				<label for="codigo" class="form-label">Codigo</label> 
+				<input type="text" class="form-control" id="codigo" data-th-field="*{codigo}" data-th-readonly="${band}" required>				
+				<p class="form-text text-danger" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></p>
 			</div>
-			<div >
-				<label for="nombreDTO" class="form-label">Nombre</label>
-				<input type="text" class="form-control" id="nombreDTO" data-th-field="*{nombreDTO}" required>
+			<div class="col-sm-8 mb-2 mt-4">
+				<label for="nombre" class="form-label">Nombre</label>
+				<input type="text" class="form-control" id="nombre" data-th-field="*{nombre}" pattern="[A-Za-z1-9\s1]+" title="Por favor, ingrese solo letras, numeros o espacios" required>
 			</div>
-			<div>
-				<label for="cursoDTO" class="form-label">Curso</label>
-				<input type="text" class="form-control" id="cursoDTO" data-th-field="*{cursoDTO}" required>
+			<div class="col-sm-8 mb-2 mt-4">
+				<label for="curso" class="form-label">Curso</label>
+				<input type="text" class="form-control" id="curso" data-th-field="*{curso}" pattern="[A-Za-z1-9\s]+" title="Por favor, ingrese solo letras, numeros o espacios" required>
 			</div>
-			<div >
-				<label for="cantHorasDTO" class="form-label">Cantidad de Horas</label>
-				<input type="number" class="form-control" id="cantHorasDTO" data-th-field="*{cantHorasDTO}">
+			<div class="col-sm-8 mb-2 mt-4">
+				<label for="cantHoras" class="form-label">Cantidad de Horas</label>
+				<input type="number" class="form-control" id="cantHoras" data-th-field="*{cantHoras}">
+				<p class="form-text text-danger" th:if="${#fields.hasErrors('cantHoras')}" th:errors="*{cantHoras}"></p>
 			</div>
-			<div >
-				<label for="modalidadDTO" class="form-label">Modalidad</label>
-				<select id="modalidadDTO" class="form-control" data-th-field="*{modalidadDTO}">
-					<option value="Virtual">Virtual</option>
+			<div class="col-sm-8 mb-2 mt-4">
+				<label for="modalidad" class="form-label">Modalidad</label>
+				<select id="modalidad" class="form-control" data-th-field="*{modalidad}">
 					<option value="Presencial">Presencial</option>
+					<option value="Virtual">Virtual</option>
 				</select>
 			</div>
-			<br>
-			<button type="submit" class="btn btn-primary" >Guardar</button>
+			<div class="mb-e col-sm-8 mb-2 mt-4">
+	            <label class="form-label">Alumnos</label>
+	            <select class="form-control" data-th-field="*{alumnos}" required multiple>
+	                <option data-th-each="Alumno : ${alumnos}" data-th-value="${Alumno.dni}" data-th-text="${Alumno.dni + ' ' + Alumno.nombre + ' ' + Alumno.apellido}"></option>
+	            </select>
+	        </div>
+			<div class="mb-e col-sm-8 mb-2 mt-4">
+	            <label class="form-label">Docente</label>
+	            <select class="form-control" data-th-field="*{docente}" required>
+	                <option data-th-each="Docente : ${docentes}" data-th-value="${Docente.legajo}" data-th-text="${Docente.legajo + ' ' + Docente.nombre + ' ' + Docente.apellido}"></option>
+	            </select>
+	        </div>
+			<div class="mb-e col-sm-8 mb-2 mt-4">
+	            <label class="form-label">Carrera</label>
+	            <select class="form-control" data-th-field="*{carrera}" required>
+	                <option data-th-each="Carrera : ${carreras}" data-th-value="${Carrera.codigo}" data-th-text="${Carrera.codigo + ' ' + Carrera.nombre + ' ' + Carrera.cantAnios}"></option>
+	            </select>
+	        </div>
+	        <br>
+		</div>
+		
+			<button type="submit" class="btn btn-primary col-sm-4 mt-3 mb-3" >Guardar</button>
+		
 		</form>
 	</div>
 

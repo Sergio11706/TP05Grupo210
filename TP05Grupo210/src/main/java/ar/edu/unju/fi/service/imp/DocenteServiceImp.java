@@ -20,14 +20,14 @@ public class DocenteServiceImp implements DocenteService{
 	DocenteMapDTO docenteMapDTO;
 	
 	@Override
-	public void guardarDocente(DocenteDTO docenteDTO) {
-		docenteDTO.setEstadoDTO(true);
-		docenteRepository.save(docenteMapDTO.convertirDocenteDTOEnDocente(docenteDTO));
+	public void guardarDocente(Docente docente) {
+		docente.setEstado(true);
+		docenteRepository.save(docente);
 	}
 
 	@Override
-	public List<Docente> mostrarDocentes() {
-		return docenteRepository.findDocenteByEstado(true);
+	public List<DocenteDTO> mostrarDocentes() {
+		return docenteMapDTO.convertirListaDocentesEnListaDocentesDTO(docenteRepository.findDocenteByEstado(true));
 	}
 
 	@Override
@@ -42,25 +42,24 @@ public class DocenteServiceImp implements DocenteService{
 	}
 
 	@Override
-	public void modificarDocente(DocenteDTO docenteDTO) {
-		Docente docenteConvertido = docenteMapDTO.convertirDocenteDTOEnDocente(docenteDTO);
+	public void modificarDocente(Docente docente) {
 		List<Docente> docentes = docenteRepository.findAll();
 		for (int i = 0; i < docentes.size(); i++) {
 	        Docente d = docentes.get(i);
-	        if (d.getLegajo().equals(docenteConvertido.getLegajo())) {
-	        	docenteConvertido.setEstado(true);
-	            docentes.set(i, docenteConvertido);
-	            docenteRepository.save(docenteConvertido);
+	        if (d.getLegajo().equals(docente.getLegajo())) {
+	        	docente.setEstado(true);
+	            docentes.set(i, docente);
+	            docenteRepository.save(docente);
 	            break;
 	        }
 	    }
 	}
 
 	@Override
-	public DocenteDTO buscarDocente(String legajo) {
+	public Docente buscarDocente(String legajo) {
 		List<Docente> docentes = docenteRepository.findAll();
 		for(Docente d : docentes) {
-			if(d.getLegajo().equals(legajo)) return docenteMapDTO.convertirDocenteEnDocenteDTO(d);
+			if(d.getLegajo().equals(legajo)) return d;
 		}
 		return null;
 	}

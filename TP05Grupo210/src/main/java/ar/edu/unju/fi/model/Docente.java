@@ -24,12 +24,12 @@ public class Docente {
 	
 	@Column(nullable = false)
 	@Size(min=3,max=20, message="El nombre debe contener como minimo 3 caracteres y como maximo 20 caracteres")
-	@Pattern(regexp="[a-z A-Z]*", message="El nombre debe estar conformado unicamente por caracteres alfabeticos")
+	@Pattern(regexp="[a-zA-ZÑñ]*", message="El nombre debe estar conformado unicamente por caracteres alfabeticos")
 	private String nombre;
 	
 	@Column(nullable = false)
 	@Size(min=3,max=30, message="El apellido debe contener como minimo 3 caracteres y como maximo 20 caracteres")
-	@Pattern(regexp="[a-z A-Z]*", message="El apellido debe estar conformado unicamente por caracteres alfabeticos")
+	@Pattern(regexp="[a-zA-ZÑñ]*", message="El apellido debe estar conformado unicamente por caracteres alfabeticos")
 	private String apellido;
 	
 	@Column(nullable = false)

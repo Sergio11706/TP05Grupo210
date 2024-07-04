@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
@@ -52,7 +51,7 @@ public class Alumno {
 	private String LU;
 	
 	private boolean estado;
-	
+
 	@ManyToMany(mappedBy= "alumnos")
 	private List<Materia> materias;
 	

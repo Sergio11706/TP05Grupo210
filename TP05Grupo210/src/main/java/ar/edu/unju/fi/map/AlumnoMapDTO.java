@@ -23,7 +23,7 @@ public interface AlumnoMapDTO {
 	@Mapping(source="materias", target="materiasDTO")
 	@Mapping(source="carrera", target="carreraDTO")
 	
-	AlumnoDTO convertirAlumnoAlumnoDTO(Alumno a);
+	AlumnoDTO convertirAlumnoAlumnoDTO(Alumno a); 
 
 	@InheritInverseConfiguration
 	

@@ -19,26 +19,36 @@
 
 	<form data-th-object="${nuevaCarrera}" data-th-action="${band}?@{/modificarCarrera}:@{/guardarCarrera}" method="post">
 		<div >
-			<label for="codigoDTO" class="form-label">Codigo</label> 
-			<input type="text" class="form-control" id="codigoDTO" data-th-field="*{codigoDTO}" data-th-readonly="${band}" required >
+			<label for="codigo" class="form-label">Codigo</label> 
+			<input type="text" class="form-control" id="codigo" data-th-field="*{codigo}" data-th-readonly="${band}" required>
+			<p class="form-text text-danger" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></p>
+			
 		</div>
 		
 		<div >
-			<label for="nombreDTO" class="form-label">Nombre</label>
-			<input type="text" class="form-control" id="nombreDTO" data-th-field="*{nombreDTO}" required>
+			<label for="nombre" class="form-label">Nombre</label>
+			<input type="text" class="form-control" id="nombre" data-th-field="*{nombre}" required title="Ingresa un nombre valido, sin números o caracteres especiales." pattern="[A-Za-z1-9\s1]+">
 		</div>
 		
 		<div>
-			<label for="añosDTO" class="form-label">Cantidad de Años</label>
-			<input type="number" class="form-control" id="añosDTO" data-th-field="*{cantAniosDTO}" required>
+			<label for="años" class="form-label">Cantidad de Años</label>
+			<input type="number" class="form-control" id="años" data-th-field="*{cantAnios}" required>
+			<p class="form-text text-danger" th:if="${#fields.hasErrors('cantAnios')}" th:errors="*{cantAnios}"></p>
 		</div>
-		<div>
-			<label for="estadoDTO" class="form-label">Estado</label>
-			 <select class="form-control" id="estadoDTO" data-th-field="*{estadoDTO}" required>
-                        <option data-th-value="true">True</option>
-                        <option data-th-value="false">False</option>
-			</select>
-		</div>
+		
+		<div class="form-group">
+	        <label class="form-label">Materias</label>
+	        <select class="form-control" data-th-field="*{materias}" required multiple>
+	            <option data-th-each="materias : ${materias}" data-th-value="${materias.codigo}" data-th-text="${materias.nombre + ' ' + materias.curso}"></option>
+	        </select>
+	    </div>
+	    
+	    <div class="form-group">
+	         <label class="form-label">Alumnos</label>
+	         <select class="form-control" data-th-field="*{alumnos}" required multiple>
+	              <option data-th-each="alumnos : ${alumnos}" data-th-value="${alumnos.dni}" data-th-text="${alumnos.dni + ' ' + alumnos.nombre + ' ' + alumnos.apellido}"></option>
+	         </select>
+	   </div>
 	<br>
 		<button type="submit" class="btn btn-primary" >Guardar</button>
 		

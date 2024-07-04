@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Component
+
 public class MateriaDTO {
 	
 	private String codigoDTO;

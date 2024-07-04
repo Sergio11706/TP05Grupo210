@@ -8,29 +8,37 @@ import org.springframework.stereotype.Service;
 import ar.edu.unju.fi.DTO.CarreraDTO;
 import ar.edu.unju.fi.map.CarreraMapDTO;
 import ar.edu.unju.fi.model.Carrera;
+import ar.edu.unju.fi.repository.AlumnoRepository;
 import ar.edu.unju.fi.repository.CarreraRepository;
+import ar.edu.unju.fi.repository.MateriaRepository;
 import ar.edu.unju.fi.service.CarreraService;
 
 @Service
 public class CarreraServiceImp implements CarreraService {
 	
 	@Autowired
+	CarreraMapDTO carreraMapDTO;
+	
+	@Autowired
 	CarreraRepository carreraRepository;
 	
 	@Autowired
-	CarreraMapDTO carreraMapDTO;
+	MateriaRepository materiaRepository;
+	
+	@Autowired
+	AlumnoRepository alumnoRepository;
 	
 	@Override
-	public void guardarCarrera(CarreraDTO carreraDTO) {
-		carreraDTO.setEstadoDTO(true);
-		carreraRepository.save(carreraMapDTO.convertirCarreraDTOaCarrera(carreraDTO));
+	public void guardarCarrera(Carrera carrera) {
+		carrera.setEstado(true);
+		carreraRepository.save(carrera);
 	} 
 
 	@Override
-	public List<Carrera> mostrarCarreras() {
-		
-		return carreraRepository.findByEstado(true);
+	public List<CarreraDTO> mostrarCarreras() {
+		return carreraMapDTO.convertirListaCarrerasListaCarrerasDTO(carreraRepository.findByEstado(true));
 	}
+
 
 	@Override
 	public void borrarCarrera(String codigo) {
@@ -47,14 +55,14 @@ public class CarreraServiceImp implements CarreraService {
 	}
 
 	@Override
-	public void modificarCarrera(CarreraDTO carreraDTO) {
-		Carrera carreraConvertida = carreraMapDTO.convertirCarreraDTOaCarrera(carreraDTO);
+	public void modificarCarrera(Carrera carreraConvertida) {
+		
 		List<Carrera> carreras = carreraRepository.findAll();
 		for (int i = 0; i < carreras.size(); i++) {
 	        Carrera c = carreras.get(i);
 	        if (c.getCodigo().equals(carreraConvertida.getCodigo())) {
+	        	carreraConvertida.setEstado(true);
 	            carreras.set(i, carreraConvertida);
-	            carreraConvertida.setEstado(true);
 	            carreraRepository.save(carreraConvertida);
 	            break;
 	        }
@@ -62,11 +70,11 @@ public class CarreraServiceImp implements CarreraService {
 	}
 
 	@Override
-	public CarreraDTO buscarCarrera(String codigo) {
+	public Carrera buscarCarrera(String codigo) {
 		List<Carrera> carreras = carreraRepository.findAll();
 		for (Carrera c: carreras) {
 			if(c.getCodigo().equals(codigo))  {
-				return carreraMapDTO.convertirCarreraAcarreraDTO(c);
+				return c;
 			}	
 		}	
 		return null;

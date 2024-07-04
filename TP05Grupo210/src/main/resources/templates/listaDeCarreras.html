@@ -5,38 +5,72 @@
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
  
-<title>LISTA DE CARRERAS</title>
+<title>LISTA DE MATERIAS</title>
 </head>
-
 <body>
 	<header>
-  		<div th:replace="~{fragments/header :: header}"></div>
-  	</header>
-		<div class="container">
-		
-		<br><br>
-		<div class="row" >
-		<div class="card" style="width: 18rem;	" data-th-each="carrera : ${ListadoCarreras}" >
-  			<div class="card-body">
-    			<h3 class="card-title" data-th-text="${carrera.nombre}" style="text-align: center;"></h3>
-    			<br>
-    			<h5 class="card-subtitle mb-2 text-body-secondary" >Codigo</h5>
-    			<p data-th-text="${carrera.codigo}"></p>
-    			<h5 class="card-subtitle mb-2 text-body-secondary" >Años</h5>
-    			<p data-th-text="${carrera.cantAnios}"></p>
-    			<br>
-    			<a data-th-href="@{'/borrarCarrera/'+${carrera.codigo}}" class="btn btn-danger">Borrar</a>					
-				<a data-th-href="@{'/modificarCarrera/'+${carrera.codigo}}" class="btn btn-warning" >Modificar</a>
-  			</div>
+		<div data-th-replace="~{fragments/header :: header}">
 		</div>
+		<div data-th-replace="~{fragments/navbar :: navbar}">
 		</div>
-</div>
-   <br><br>
-   
-	<footer>
-		<div th:replace="~{fragments/footer :: footer}"></div>
-	</footer>
+	</header>
 
+	<div class="table-responsive-lg pl-md-3 pr-md-3 text-center">
+	<table class="table table-dark table-hover table-sm">
+			<thead>
+				<tr>
+					<th class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" scope="col">Codigo</th>
+					<th class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" scope="col">Nombre</th>
+					<th class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" scope="col">Duracion Años</th>
+					<th class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" scope="col">Materias</th>
+					<th class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" scope="col">Alumnos</th>
+					<th class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" scope="col">Opciones</th>
+					
+				</tr>
+			</thead>
+			<tbody data-th-each="CarreraDTO : ${ListadoCarreras}">
+				<tr>
+					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${CarreraDTO.codigoDTO}"></td>
+					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${CarreraDTO.nombreDTO}"></td>
+					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2" data-th-text="${CarreraDTO.cantAniosDTO}"></td>
+				
+                   <!--   <td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2">
+                        <ul>
+                            <li data-th-each="Alumno : ${MateriaDTO.alumnosDTO}" data-th-text="${Alumno.dni + ' ' + Alumno.nombre + ' ' + Alumno.apellido}"></li>
+                        </ul>
+                    </td>
+                 
+                    -->
+                    
+                    <td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2">
+                        <ul>
+                            <li data-th-each="materias : ${CarreraDTO.materiasDTO}" data-th-text="${materias.codigo}+' '+${materias.nombre}+' '+${materias.curso}"></li>
+                        </ul>
+                    </td>
+                    
+                    <td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2">
+                        <ul>
+                            <li data-th-each="alumnos : ${CarreraDTO.alumnosDTO}" data-th-text="${alumnos.dni}+' '+${alumnos.nombre}+' '+${alumnos.apellido}"></li>
+                        </ul> 
+                    </td>
+          
+					
+					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2">
+						 <a data-th-href="@{'/borrarCarrera/'+${CarreraDTO.codigoDTO}}" class="btn btn-danger">Borrar</a>
+          				 <a data-th-href="@{'/modificarCarrera/'+${CarreraDTO.codigoDTO}}" class="btn btn-warning">Modificar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<a data-th-href="@{/formularioCarrera}" class="btn btn-primary mt-3 mb-3">Nueva Carrera</a> 
+	</div>
+
+	<br>
+	<footer>
+		<div data-th-replace="~{fragments/footer :: footer}">
+		</div>
+	</footer>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

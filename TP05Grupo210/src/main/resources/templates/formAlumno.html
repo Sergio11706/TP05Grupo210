@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -17,45 +17,62 @@
 		</div>
 	</header>
 
-	<div class="containerForm">
-		<h1>FORMULARIO ALUMNO</h1>
+	<div class="container text-center">
+		<h1 class="mb-3 mt-2">FORMULARIO ALUMNO</h1>
 		<form data-th-object = "${nuevoAlumno}" data-th-action="${band}?@{/modificarAlumno}:@{/guardarAlumno}" method="post">
-
-		<div >
-				<label for="dniDTO" class="form-label">Dni</label> 
-				<input type="text" class="form-control" id="dniDTO" data-th-field="*{dniDTO}" data-th-readonly="${band}" required>				
+			<div class="d-flex flex-column align-items-center bg-dark text-light">
+				<div class="col-sm-8 mb-2 mt-4">
+					<label for="dni" class="form-label">DNI</label> 
+					<input type="text" class="form-control" id="dni" data-th-field="*{dni}" data-th-readonly="${band}">
+					<p class="form-text text-danger" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}">		
+				</div>
+				<div class="col-sm-8">
+					<label for="nombre" class="form-label">Nombre</label>
+					<input type="text" class="form-control" id="nombre" data-th-field="*{nombre}">
+					<p class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">
+				</div>
+				<div class="col-sm-8 mb-2 mt-2">
+					<label for="apellido" class="form-label">Apellido</label>
+					<input type="text" class="form-control" id="apellido" data-th-field="*{apellido}">
+					<p class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">
+				</div>
+				<div class="col-sm-8 mb-2 mt-2">
+					<label for="email" class="form-label">Email</label>
+					<input type="email" class="form-control" id="email" data-th-field="*{email}">
+				</div>
+				<div class="col-sm-8 mb-2 mt-2">
+					<label for="telefono" class="form-label">Telefono</label>
+					<input type="number" class="form-control" id="telefono" data-th-field="*{telefono}">
+					<p class="form-text text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}">
+				</div>
+				<div class="col-sm-8 mb-2 mt-2">
+					<label for="nacimiento" class="form-label">Fecha de Nacimiento</label>
+					<input type="date" class="form-control" id="nacimiento" data-th-field="*{nacimiento}">
+				</div>
+				<div class="col-sm-8 mb-2 mt-2">
+					<label for="domicilio" class="form-label">Domicilio</label>
+					<input type="text" class="form-control" id="domicilio" data-th-field="*{domicilio}">
+					<p class="form-text text-danger" th:if="${#fields.hasErrors('domicilio')}" th:errors="*{domicilio}">
+				</div>
+				<div class="col-sm-8 mb-4 mt-2">
+					<label for="lu" class="form-label">Libreta Universitaria</label>
+					<input type="text" class="form-control" id="lu" data-th-field="*{LU}">
+					<p class="form-text text-danger" th:if="${#fields.hasErrors('LU')}" th:errors="*{LU}">
+				</div>
+				<div class="col-sm-8 mb-4 mt-2">
+	            	<label class="form-label">Carrera</label>
+	            	<select class="form-control" data-th-field="*{carrera}" required>
+	                	<option data-th-each="Carrera : ${carreras}" data-th-value="${Carrera.legajo}" data-th-text="${Carrera.codigo + ' ' + Carrera.nombre"></option>
+	            	</select>
+	        	</div>
+				<div class="col-sm-8 mb-4 mt-2">
+					<label class="form-label">Materias</label> <select
+						class="form-control" data-th-field="*{materias}" required multiple>
+						<option data-th-each="Materia : ${materias}" data-th-value="${Materia.codigo}" data-th-text="${Materia.codigo + ' ' + Materia.nombre}"></option>
+					</select>
+				</div>
 			</div>
-			<div >
-				<label for="nombreDTO" class="form-label">Nombre</label>
-				<input type="text" class="form-control" id="nombreDTO" data-th-field="*{nombreDTO}" required>
-			</div>
-			<div>
-				<label for="apellidoDTO" class="form-label">Apellido</label>
-				<input type="text" class="form-control" id="apellidoDTO" data-th-field="*{apellidoDTO}" required>
-			</div>
-			<div >
-				<label for="emailDTO" class="form-label">Email</label>
-				<input type="email" class="form-control" id="emailDTO" data-th-field="*{emailDTO}" required>
-			</div>
-			<div >
-				<label for="telefonoDTO" class="form-label">Telefono</label>
-				<input type="text" class="form-control" id="telefonoDTO" data-th-field="*{telefonoDTO}">
-			</div>
-			<div >
-				<label for="nacimientoDTO" class="form-label">Fecha de Nacimiento</label>
-				<input type="date" class="form-control" id="nacimientoDTO" data-th-field="*{nacimientoDTO}">
-			</div>
-			
-			<div >
-				<label for="domicilioDTO" class="form-label">Domicilio</label>
-				<input type="text" class="form-control" id="domicilioDTO" data-th-field="*{domicilioDTO}" required>
-			</div>
-			<div >
-				<label for="luDTO" class="form-label">Libreta Universitaria</label>
-				<input type="text" class="form-control" id="luDTO" data-th-field="*{LUDTO}" required>
-			</div>
-			<br>
-			<button type="submit" class="btn btn-primary" >Guardar</button>
+			<button type="submit" class="btn btn-primary col-sm-4 mt-3 mb-3" >Guardar</button>
 		</form>
 	</div>
 

@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.controller;
 
+//import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -10,10 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+//import ar.edu.unju.fi.DTO.AlumnoDTO;
 import ar.edu.unju.fi.model.Alumno;
 import ar.edu.unju.fi.service.AlumnoService;
-import ar.edu.unju.fi.service.CarreraService;
-import ar.edu.unju.fi.service.MateriaService;
 import jakarta.validation.Valid;
 
 @Controller
@@ -23,12 +24,6 @@ public class AlumnoController {
 	
 	@Autowired
 	AlumnoService alumnoService;
-	
-	@Autowired
-	CarreraService carreraService;
-	
-	@Autowired
-	MateriaService materiaService;
 	
 	@GetMapping("/listaDeAlumnos")
 	public ModelAndView mostrarAlumnos() {
@@ -42,12 +37,25 @@ public class AlumnoController {
 	public ModelAndView getFormAlumno() {
 		ModelAndView modelView = new ModelAndView("formAlumno");
 		modelView.addObject("nuevoAlumno", nuevoAlumno);
-		modelView.addObject("materias", materiaService.mostrarMaterias());
-		modelView.addObject("carreras", carreraService.mostrarCarreras());
 		modelView.addObject("band", false);
 		return modelView;
 	}
+	/*
+	@GetMapping("/inscripcion")
+    public String mostrarFormulario(Alumno alumno) {
+        Alumno nuevoAlumno = new Alumno();
+        alumno.addAttribute("nuevoAlumno", nuevoAlumno);
+        return "inscripcionMateria";
+    }
 	
+	@GetMapping("/filtrarAlumno")
+	public ModelAndView filtrarAlumnos(@RequestParam("materia") String codigoMateria) {
+	    List<AlumnoDTO> alumnosFiltrados = alumnoService.filtrarPorMateria(codigoMateria);
+	    ModelAndView modelView = new ModelAndView("listaDeAlumnos");
+	    modelView.addObject("ListadoAlumnos", alumnosFiltrados);
+	    return modelView;
+	}
+	*/
 	@PostMapping("/guardarAlumno")
 	public ModelAndView guardarAlumno(@Valid @ModelAttribute("nuevoAlumno") Alumno alumno, BindingResult result) {
 		
@@ -55,8 +63,6 @@ public class AlumnoController {
 		
 		if (result.hasErrors()) {
 			modelView.setViewName("formAlumno");
-			modelView.addObject("materias", materiaService.mostrarMaterias());
-			modelView.addObject("carreras", carreraService.mostrarCarreras());
 		}
 		else {
 			alumnoService.guardarAlumno(alumno);
@@ -79,8 +85,6 @@ public class AlumnoController {
 
 		ModelAndView modelView = new ModelAndView("formAlumno");
 		modelView.addObject("nuevoAlumno",alumnoModificado);
-		modelView.addObject("materias", materiaService.mostrarMaterias());
-		modelView.addObject("carreras", carreraService.mostrarCarreras());
 		modelView.addObject("band", true);
 
 		return modelView;
@@ -93,8 +97,6 @@ public class AlumnoController {
 		
 		if (result.hasErrors()) {
 			modelView.setViewName("formAlumno");
-			modelView.addObject("materias", materiaService.mostrarMaterias());
-			modelView.addObject("carreras", carreraService.mostrarCarreras());
 		}
 		else {
 			alumnoService.modificarAlumno(alumno);
@@ -104,26 +106,4 @@ public class AlumnoController {
 		
 		return modelView;
 	}
-	
-	/*
-	@GetMapping("/filtrarAlumnos")
-	public ModelAndView filtrarAlumnos(@RequestParam("materia") String codigoMateria) {
-	    List<Alumno> alumnosFiltrados = alumnoService.filtrarPorMateria(codigoMateria);
-
-	    ModelAndView modelView = new ModelAndView("listaDeAlumnos");
-	    modelView.addObject("ListadoAlumnos", alumnosFiltrados);
-
-	    return modelView;
-	}
-	
-	@GetMapping("/consultarAlumno")
-	public ModelAndView consultarAlumno(@RequestParam("carrera") String codigoCarrera) {
-	    List<Alumno> alumnosConsultados = alumnoService.consultarPorCarrera(codigoCarrera);
-
-	    ModelAndView modelView = new ModelAndView("listaDeAlumnos");
-	    modelView.addObject("ListadoAlumnos", alumnosConsultados);
-
-	    return modelView;
-	}
-	*/
 }

@@ -14,4 +14,5 @@ public interface AlumnoService {
 	public void eliminarAlumno(String dni);
 	public void modificarAlumno(Alumno alumno);
 	public Alumno buscarAlumno(String dni);
+	//public List<AlumnoDTO> filtrarPorMateria(String codigoMateria);
 }

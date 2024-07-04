@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -17,46 +17,45 @@
 		</div>
 	</header>
 
-	<div class="containerForm">
-		<h1>FORMULARIO DOCENTE</h1>
+	<div class="container text-center">
+		<h1 class="mb-3 mt-2">FORMULARIO DOCENTE</h1>
 		<form data-th-object = "${nuevoDocente}" data-th-action="${band}?@{/modificarDocente}:@{/guardarDocente}" method="post">
 		
-			<div >
-				<label for="legajoDTO" class="form-label">Legajo</label> 
-				<input type="text" class="form-control" id="legajoDTO" data-th-field="*{legajoDTO}" data-th-readonly="${band}" required>				
+		<div class="d-flex flex-column align-items-center bg-dark text-light">
+			<div class="col-sm-8 mb-2 mt-4">
+				<label for="legajo" class="form-label">Legajo</label> 
+				<input type="text" class="form-control" id="legajo" data-th-field="*{legajo}" data-th-readonly="${band}" required>
+				<p class="form-text text-danger" data-th-if="${#fields.hasErrors('legajo')}" data-th-errors="*{legajo}"></p>				
 			</div>
 			
-			<div >
-				<label for="nombreDTO" class="form-label">Nombre</label>
-				<input type="text" class="form-control" id="nombreDTO" data-th-field="*{nombreDTO}" required>
+			<div class="col-sm-8 mb-2 mt-4">
+				<label for="nombre" class="form-label">Nombre</label>
+				<input type="text" class="form-control" id="nombre" data-th-field="*{nombre}" required>
+				<p class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>				
 			</div>
 			
-			<div >
-				<label for="apellidoDTO" class="form-label">Apellido</label>
-				<input type="text" class="form-control" id="apellidoDTO" data-th-field="*{apellidoDTO}" required>
+			<div class="col-sm-8 mb-2 mt-4">
+				<label for="apellido" class="form-label">Apellido</label>
+				<input type="text" class="form-control" id="apellido" data-th-field="*{apellido}" required>
+				<p class="form-text text-danger" data-th-if="${#fields.hasErrors('apellido')}" data-th-errors="*{apellido}"></p>				
 			</div>
 			
-			<div>
-				<label for="emailDTO" class="form-label">Email</label>
-				<input type="email" class="form-control" id="emailDTO" data-th-field="*{emailDTO}" required>
+			<div class="col-sm-8 mb-2 mt-4">
+				<label for="email" class="form-label">Email</label>
+				<input type="email" class="form-control" id="email" data-th-field="*{email}" required>			
 			</div>
 			
-			<div >
-				<label for="telefonoDTO" class="form-label">Número de telefono</label>
-				<input type="number" class="form-control" id="telefonoDTO" data-th-field="*{telefonoDTO}">
+			<div class="col-sm-8 mb-2 mt-4">
+				<label for="telefono" class="form-label">Número de telefono</label>
+				<input type="number" class="form-control" id="telefono" data-th-field="*{telefono}">
+				<p class="form-text text-danger" data-th-if="${#fields.hasErrors('telefono')}" data-th-errors="*{telefono}"></p>				
 			</div>
-			
-			<div>
-				<label for="estadoDTO" class="form-label">Estado</label>
-				 <select class="form-control" id="estadoDTO" data-th-field="*{estadoDTO}" required>
-	                        <option data-th-value="true">True</option>
-	                        <option data-th-value="false">False</option>
-				</select>
-			</div>
-			
-			
-			<br>
-			<button type="submit" class="btn btn-primary" >Guardar</button>
+
+	        <br>
+		</div>
+		
+			<button type="submit" class="btn btn-primary col-sm-4 mt-3 mb-3" >Guardar</button>
+		
 		</form>
 	</div>
 

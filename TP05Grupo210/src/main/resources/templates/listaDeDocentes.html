@@ -18,8 +18,9 @@
 	</header>
 		
     <br><br>
-	<div class="container">
-	<table class="table table-dark table-sm">
+    
+    <div class="table-responsive-lg pl-md-3 pr-md-3 text-center">
+	<table class="table table-dark table-hover table-sm">
 			<thead>
 				<tr>
 					<th scope="col">Legajo</th>
@@ -27,28 +28,32 @@
 					<th scope="col">Apellido</th>
 					<th scope="col">Email</th>
 					<th scope="col">Telefono</th>
+					<th scope="col">Materia</th>
 					<th scope="col">Estado</th>
 				</tr>
 			</thead>
-			<tbody data-th-each="Docente : ${ListadoDocentes}">
+			
+			<tbody data-th-each="DocenteDTO : ${ListadoDocentes}">
 				<tr>
-					<td data-th-text="${Docente.legajo}"></td>
-					<td data-th-text="${Docente.nombre}"></td>
-					<td data-th-text="${Docente.apellido}"></td>
-					<td data-th-text="${Docente.email}"></td>
-					<td data-th-text="${Docente.telefono}"></td>
-					<td data-th-text="${Docente.estado}"></td>
-					<td>
-						<a data-th-href="@{'/borrarDocente/'+${Docente.legajo}}" class="btn btn-danger">Eliminar</a>
+					<td data-th-text="${DocenteDTO.legajoDTO}"></td>
+					<td data-th-text="${DocenteDTO.nombreDTO}"></td>
+					<td data-th-text="${DocenteDTO.apellidoDTO}"></td>
+					<td data-th-text="${DocenteDTO.emailDTO}"></td>
+					<td data-th-text="${DocenteDTO.telefonoDTO}"></td>
+					<td data-th-text="${DocenteDTO.estadoDTO}"></td>
 
-						<a data-th-href="@{'/modificarDocente/'+${Docente.legajo}}" class="btn btn-warning">Modificar</a>
+					<td>
+						<a data-th-href="@{'/borrarDocente/'+${DocenteDTO.legajoDTO}}" class="btn btn-danger">Eliminar</a>
+
+						<a data-th-href="@{'/modificarDocente/'+${DocenteDTO.legajoDTO}}" class="btn btn-warning">Modificar</a>
 					</td>
 				</tr>
 			</tbody>
-		</table>
-		
-		<a data-th-href="@{/formularioDocente}" class="btn btn-primary">Nuevo Docente</a> 
-	</div>
+	</table>
+	
+	<a data-th-href="@{/formularioDocente}" class="btn btn-primary">Nuevo Docente</a> 
+	
+    </div>
 	
 	<br>
 	

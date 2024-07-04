@@ -1,7 +1,6 @@
 package ar.edu.unju.fi.DTO;
 import org.springframework.stereotype.Component;
 
-import ar.edu.unju.fi.model.Carrera;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,6 +16,5 @@ public class MateriaDTO {
 	private int cantHorasDTO;
 	private String modalidadDTO;
 	private boolean estadoDTO;
-	private Carrera carreraDTO;
 	
 }

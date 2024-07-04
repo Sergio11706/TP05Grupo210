@@ -59,12 +59,6 @@
 	                <option data-th-each="Docente : ${docentes}" data-th-value="${Docente.legajo}" data-th-text="${Docente.legajo + ' ' + Docente.nombre + ' ' + Docente.apellido}"></option>
 	            </select>
 	        </div>
-			<div class="mb-e col-sm-8 mb-2 mt-4">
-	            <label class="form-label">Carrera</label>
-	            <select class="form-control" data-th-field="*{carrera}" required>
-	                <option data-th-each="Carrera : ${carreras}" data-th-value="${Carrera.codigo}" data-th-text="${Carrera.codigo + ' ' + Carrera.nombre + ' ' + Carrera.cantAnios}"></option>
-	            </select>
-	        </div>
 	        <br>
 		</div>
 		

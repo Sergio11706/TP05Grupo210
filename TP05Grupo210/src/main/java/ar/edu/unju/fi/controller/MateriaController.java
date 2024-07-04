@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unju.fi.map.AlumnoMapDTO;
+import ar.edu.unju.fi.map.DocenteMapDTO;
 import ar.edu.unju.fi.model.Materia;
 import ar.edu.unju.fi.service.AlumnoService;
-import ar.edu.unju.fi.service.CarreraService;
 import ar.edu.unju.fi.service.DocenteService;
 import ar.edu.unju.fi.service.MateriaService;
 import jakarta.validation.Valid;
@@ -36,18 +37,20 @@ public class MateriaController {
 	DocenteService docenteService;
 	
 	@Autowired
-	CarreraService carreraService;
+	AlumnoMapDTO alumnoMapDTO;
+	
+	@Autowired
+	DocenteMapDTO docenteMapDTO;
 	
 	List<String> codigos = new ArrayList<>();
-	
+		
 	@GetMapping("/formularioMateria")
 	public ModelAndView getFormMateria() {
 		ModelAndView modelView = new ModelAndView("formMateria");
 		modelView.addObject("nuevaMateria", nuevaMateria);
 		modelView.addObject("band", false);
-		modelView.addObject("alumnos", alumnoService.mostrarAlumnos());
-		modelView.addObject("docentes", docenteService.mostrarDocentes());
-		modelView.addObject("carreras", carreraService.mostrarCarreras());
+		modelView.addObject("alumnos", alumnoMapDTO.convertirListaAlumnosDTOListaAlumnos(alumnoService.mostrarAlumnos()));
+		modelView.addObject("docentes", docenteMapDTO.convertirListaDocentesDTOEnListaDocentes(docenteService.mostrarDocentes()));
 		
 		return modelView;
 	}
@@ -60,9 +63,8 @@ public class MateriaController {
 		
 		if(result.hasErrors() || codigos.contains(materia.getCodigo())) {
 			modelView.setViewName("formMateria");
-			modelView.addObject("alumnos", alumnoService.mostrarAlumnos());
-			modelView.addObject("docentes", docenteService.mostrarDocentes());
-			modelView.addObject("carreras", carreraService.mostrarCarreras());
+			modelView.addObject("alumnos", alumnoMapDTO.convertirListaAlumnosDTOListaAlumnos(alumnoService.mostrarAlumnos()));
+			modelView.addObject("docentes", docenteMapDTO.convertirListaDocentesDTOEnListaDocentes(docenteService.mostrarDocentes()));
 		}
 		else {
 			codigos.add(materia.getCodigo());
@@ -89,9 +91,8 @@ public class MateriaController {
 		ModelAndView modelView = new ModelAndView("formMateria");
 		modelView.addObject("nuevaMateria", materiaModificada);
 		modelView.addObject("band", true);
-		modelView.addObject("alumnos", alumnoService.mostrarAlumnos());
-		modelView.addObject("docentes", docenteService.mostrarDocentes());
-		modelView.addObject("carreras", carreraService.mostrarCarreras());
+		modelView.addObject("alumnos", alumnoMapDTO.convertirListaAlumnosDTOListaAlumnos(alumnoService.mostrarAlumnos()));
+		modelView.addObject("docentes", docenteMapDTO.convertirListaDocentesDTOEnListaDocentes(docenteService.mostrarDocentes()));
 		
 		return modelView;
 	}
@@ -102,9 +103,8 @@ public class MateriaController {
 		
 		if(result.hasErrors()) {
 			modelView.setViewName("formMateria");
-			modelView.addObject("alumnos", alumnoService.mostrarAlumnos());
-			modelView.addObject("docentes", docenteService.mostrarDocentes());
-			modelView.addObject("carreras", carreraService.mostrarCarreras());
+			modelView.addObject("alumnos", alumnoMapDTO.convertirListaAlumnosDTOListaAlumnos(alumnoService.mostrarAlumnos()));
+			modelView.addObject("docentes", docenteMapDTO.convertirListaDocentesDTOEnListaDocentes(docenteService.mostrarDocentes()));
 		}
 		else {
 			materiaService.modificarMateria(materia);

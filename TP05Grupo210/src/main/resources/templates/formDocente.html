@@ -47,7 +47,7 @@
 			
 			<div class="col-sm-8 mb-2 mt-4">
 				<label for="telefono" class="form-label">Número de telefono</label>
-				<input type="number" class="form-control" id="telefono" data-th-field="*{telefono}">
+				<input type="number" class="form-control" id="telefono" data-th-field="*{telefono}" required>
 				<p class="form-text text-danger" data-th-if="${#fields.hasErrors('telefono')}" data-th-errors="*{telefono}"></p>				
 			</div>
 

@@ -12,8 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.model.Alumno;
 import ar.edu.unju.fi.service.AlumnoService;
-import ar.edu.unju.fi.service.CarreraService;
-import ar.edu.unju.fi.service.MateriaService;
 import jakarta.validation.Valid;
 
 @Controller
@@ -23,12 +21,6 @@ public class AlumnoController {
 	
 	@Autowired
 	AlumnoService alumnoService;
-	
-	@Autowired
-	CarreraService carreraService;
-	
-	@Autowired
-	MateriaService materiaService;
 	
 	@GetMapping("/listaDeAlumnos")
 	public ModelAndView mostrarAlumnos() {
@@ -42,8 +34,6 @@ public class AlumnoController {
 	public ModelAndView getFormAlumno() {
 		ModelAndView modelView = new ModelAndView("formAlumno");
 		modelView.addObject("nuevoAlumno", nuevoAlumno);
-		modelView.addObject("materias", materiaService.mostrarMaterias());
-		modelView.addObject("carreras", carreraService.mostrarCarreras());
 		modelView.addObject("band", false);
 		return modelView;
 	}
@@ -55,8 +45,6 @@ public class AlumnoController {
 		
 		if (result.hasErrors()) {
 			modelView.setViewName("formAlumno");
-			modelView.addObject("materias", materiaService.mostrarMaterias());
-			modelView.addObject("carreras", carreraService.mostrarCarreras());
 		}
 		else {
 			alumnoService.guardarAlumno(alumno);
@@ -79,8 +67,6 @@ public class AlumnoController {
 
 		ModelAndView modelView = new ModelAndView("formAlumno");
 		modelView.addObject("nuevoAlumno",alumnoModificado);
-		modelView.addObject("materias", materiaService.mostrarMaterias());
-		modelView.addObject("carreras", carreraService.mostrarCarreras());
 		modelView.addObject("band", true);
 
 		return modelView;
@@ -93,8 +79,6 @@ public class AlumnoController {
 		
 		if (result.hasErrors()) {
 			modelView.setViewName("formAlumno");
-			modelView.addObject("materias", materiaService.mostrarMaterias());
-			modelView.addObject("carreras", carreraService.mostrarCarreras());
 		}
 		else {
 			alumnoService.modificarAlumno(alumno);

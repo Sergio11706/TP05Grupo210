@@ -1,7 +1,5 @@
 package ar.edu.unju.fi.DTO;
 
-import java.util.List;
-
 import org.springframework.stereotype.Component;
 
 import lombok.Data;

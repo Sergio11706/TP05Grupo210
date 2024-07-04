@@ -1,5 +1,6 @@
  package ar.edu.unju.fi.service.imp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.DTO.CarreraDTO;
 import ar.edu.unju.fi.map.CarreraMapDTO;
+import ar.edu.unju.fi.model.Alumno;
 import ar.edu.unju.fi.model.Carrera;
 import ar.edu.unju.fi.repository.AlumnoRepository;
 import ar.edu.unju.fi.repository.CarreraRepository;
@@ -79,4 +81,13 @@ public class CarreraServiceImp implements CarreraService {
 		}	
 		return null;
  }
+	
+	@Override
+	public List<Alumno> obtenerAlumnosDeCarrera(String codigo) {
+	    Carrera carrera = carreraRepository.findById(codigo).orElse(null);
+	    if (carrera != null) {
+	        return carrera.getAlumnos();
+	    }
+	    return new ArrayList<>();
+	}
 }

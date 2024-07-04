@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unju.fi.model.Alumno;
 import ar.edu.unju.fi.model.Carrera;
 import ar.edu.unju.fi.service.AlumnoService;
 import ar.edu.unju.fi.service.CarreraService;
@@ -93,7 +94,8 @@ public class CarreraController {
 		return modelView;		
 		}
 	
-
+	 
+	 
 	@GetMapping("/modificarCarrera/{codigo}")
 	public ModelAndView formModificarCarrera(@PathVariable("codigo") String codigo) {
 		
@@ -137,4 +139,16 @@ public class CarreraController {
 
 		return modelView;
 }
+
+	
+	@GetMapping("/consultarAlumnosCarrera/{codigo}")
+	public ModelAndView consultarAlumnosCarrera(@PathVariable(name="codigo") String codigo) {
+	    Carrera carrera = carreraService.buscarCarrera(codigo);
+	    List<Alumno> alumnos = carrera.getAlumnos();
+
+	    ModelAndView modelView = new ModelAndView("listaDeAlumnos");
+	    modelView.addObject("ListadoAlumnos", alumnos);
+
+	    return modelView;
+	}
 }

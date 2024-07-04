@@ -42,14 +42,14 @@
 		
 		<div class="col-sm-8 mb-2 mt-4">
 	        <label class="form-label">Materias</label>
-	        <select class="form-control" data-th-field="*{materias}" >
+	        <select class="form-control" data-th-field="*{materias}"  required multiple>
 	            <option data-th-each="materias : ${materias}" data-th-value="${materias.codigo}" data-th-text="${materias.nombre + ' ' + materias.curso}"></option>
 	        </select>
 	    </div>
 	    
 	    <div class="col-sm-8 mb-2 mt-4">
 	         <label class="form-label">Alumnos</label>
-	         <select class="form-control" data-th-field="*{alumnos}" >
+	         <select class="form-control" data-th-field="*{alumnos}" required multiple>
 	              <option data-th-each="alumnos : ${alumnos}" data-th-value="${alumnos.dni}" data-th-text="${alumnos.dni + ' ' + alumnos.nombre + ' ' + alumnos.apellido}"></option>
 	         </select>
 	   </div>

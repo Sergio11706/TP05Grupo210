@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.controller;
 
+//import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+//import ar.edu.unju.fi.DTO.AlumnoDTO;
 import ar.edu.unju.fi.model.Alumno;
 import ar.edu.unju.fi.service.AlumnoService;
 import jakarta.validation.Valid;
@@ -37,7 +40,22 @@ public class AlumnoController {
 		modelView.addObject("band", false);
 		return modelView;
 	}
+	/*
+	@GetMapping("/inscripcion")
+    public String mostrarFormulario(Alumno alumno) {
+        Alumno nuevoAlumno = new Alumno();
+        alumno.addAttribute("nuevoAlumno", nuevoAlumno);
+        return "inscripcionMateria";
+    }
 	
+	@GetMapping("/filtrarAlumno")
+	public ModelAndView filtrarAlumnos(@RequestParam("materia") String codigoMateria) {
+	    List<AlumnoDTO> alumnosFiltrados = alumnoService.filtrarPorMateria(codigoMateria);
+	    ModelAndView modelView = new ModelAndView("listaDeAlumnos");
+	    modelView.addObject("ListadoAlumnos", alumnosFiltrados);
+	    return modelView;
+	}
+	*/
 	@PostMapping("/guardarAlumno")
 	public ModelAndView guardarAlumno(@Valid @ModelAttribute("nuevoAlumno") Alumno alumno, BindingResult result) {
 		
@@ -88,26 +106,4 @@ public class AlumnoController {
 		
 		return modelView;
 	}
-	
-	/*
-	@GetMapping("/filtrarAlumnos")
-	public ModelAndView filtrarAlumnos(@RequestParam("materia") String codigoMateria) {
-	    List<Alumno> alumnosFiltrados = alumnoService.filtrarPorMateria(codigoMateria);
-
-	    ModelAndView modelView = new ModelAndView("listaDeAlumnos");
-	    modelView.addObject("ListadoAlumnos", alumnosFiltrados);
-
-	    return modelView;
-	}
-	
-	@GetMapping("/consultarAlumno")
-	public ModelAndView consultarAlumno(@RequestParam("carrera") String codigoCarrera) {
-	    List<Alumno> alumnosConsultados = alumnoService.consultarPorCarrera(codigoCarrera);
-
-	    ModelAndView modelView = new ModelAndView("listaDeAlumnos");
-	    modelView.addObject("ListadoAlumnos", alumnosConsultados);
-
-	    return modelView;
-	}
-	*/
 }

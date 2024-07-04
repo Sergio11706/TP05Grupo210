@@ -26,11 +26,11 @@ public class Alumno {
 	private String dni;
 	
 	@Size(min=2, message="El nombre debe contener como minimo 2 caracteres")
-	@Pattern(regexp= "[a-z A-Z]*", message="Debe ingresar únicamente letras")
+	@Pattern(regexp= "[a-z A-Z Ññ]*", message="Debe ingresar únicamente letras")
 	private String nombre;
 	
 	@Size(min=2, message="El apellido debe contener como minimo 2 caracteres")
-	@Pattern(regexp= "[a-z A-Z]*", message="Debe ingresar unicamente letras")
+	@Pattern(regexp= "[a-z A-Z Ññ]*", message="Debe ingresar unicamente letras")
 	private String apellido;
 	
 	private String email;
@@ -42,7 +42,7 @@ public class Alumno {
 	private LocalDate nacimiento;
 	
 	
-	@Pattern(regexp= "[a-z A-Z \s 0-9]*", message="Debe ingresar letras o numeros")
+	@Pattern(regexp= "[a-z A-Z Ññ \s 0-9]*", message="Debe ingresar letras o numeros")
 	@Size(min=5, message="Debe ingresar como minimo 5 caracteres")
 	private String domicilio;
 	
@@ -58,5 +58,4 @@ public class Alumno {
 	@ManyToOne(fetch= FetchType.LAZY)
 	@JoinColumn(name= "carrara_codigo")
 	private Carrera carrera;
-	
 }

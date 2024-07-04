@@ -66,5 +66,12 @@ public class AlumnoServiceImp implements AlumnoService {
 		}
 		return null;
 	}
-
+	
+	/*
+	@Override
+	public List<AlumnoDTO> filtrarPorMateria(String codigoMateria) {
+	    List<Alumno> alumnos = alumnoRepository.findByMaterias_CodigoAndEstado(codigoMateria, true);
+	    return alumnoMapDTO.convertirListaAlumnosListaAlumnosDTO(alumnos);
+	}
+	*/
 }

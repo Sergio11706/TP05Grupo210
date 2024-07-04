@@ -18,7 +18,6 @@ public interface DocenteMapDTO {
 	@Mapping(source="email", target="emailDTO")
 	@Mapping(source="telefono", target="telefonoDTO")
 	@Mapping(source="estado", target="estadoDTO")
-	//@Mapping(source="materia", target="materiaDTO")
 	
 	DocenteDTO convertirDocenteEnDocenteDTO(Docente d);
 	

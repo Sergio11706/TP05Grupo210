@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.DTO.DocenteDTO;
 import ar.edu.unju.fi.model.Docente;
 import ar.edu.unju.fi.service.DocenteService;
 import ar.edu.unju.fi.service.MateriaService;
@@ -51,7 +50,6 @@ public class DocenteController {
 
 		  if (result.hasErrors()) {
 			  modelView.setViewName("formDocente");
-			  modelView.addObject("materias", materiaService.mostrarMaterias());
 		  }
 		  else {
 			  //guardar docente
@@ -95,7 +93,6 @@ public class DocenteController {
 		
 		if (result.hasErrors()) {
 			  modelView.setViewName("formDocente");
-			  modelView.addObject("materias", materiaService.mostrarMaterias());
 		}
 		else {
 			docenteService.modificarDocente(docente);

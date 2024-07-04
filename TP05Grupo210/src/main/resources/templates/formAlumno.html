@@ -59,20 +59,18 @@
 					<input type="text" class="form-control" id="lu" data-th-field="*{LU}">
 					<p class="form-text text-danger" th:if="${#fields.hasErrors('LU')}" th:errors="*{LU}">
 				</div>
-				<div class="mb-e col-sm-8 mb-2 mt-4">
-					<label class="form-label">Materias</label> <select
-						class="form-control" data-th-field="*{materias}" required multiple>
-						<option data-th-each="Materia : ${materias}"
-							data-th-value="${Materia.codigo}"
-							data-th-text="${Materia.codigo + ' ' + Materia.nombre}"></option>
-					</select>
-				</div>
-				<div class="mb-e col-sm-8 mb-2 mt-4">
+				<div class="col-sm-8 mb-4 mt-2">
 	            	<label class="form-label">Carrera</label>
 	            	<select class="form-control" data-th-field="*{carrera}" required>
 	                	<option data-th-each="Carrera : ${carreras}" data-th-value="${Carrera.legajo}" data-th-text="${Carrera.codigo + ' ' + Carrera.nombre"></option>
 	            	</select>
 	        	</div>
+				<div class="col-sm-8 mb-4 mt-2">
+					<label class="form-label">Materias</label> <select
+						class="form-control" data-th-field="*{materias}" required multiple>
+						<option data-th-each="Materia : ${materias}" data-th-value="${Materia.codigo}" data-th-text="${Materia.codigo + ' ' + Materia.nombre}"></option>
+					</select>
+				</div>
 			</div>
 			<button type="submit" class="btn btn-primary col-sm-4 mt-3 mb-3" >Guardar</button>
 		</form>

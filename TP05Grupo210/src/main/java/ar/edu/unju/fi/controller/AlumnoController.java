@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+//import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.model.Alumno;
@@ -103,4 +104,26 @@ public class AlumnoController {
 		
 		return modelView;
 	}
+	
+	/*
+	@GetMapping("/filtrarAlumnos")
+	public ModelAndView filtrarAlumnos(@RequestParam("materia") String codigoMateria) {
+	    List<Alumno> alumnosFiltrados = alumnoService.filtrarPorMateria(codigoMateria);
+
+	    ModelAndView modelView = new ModelAndView("listaDeAlumnos");
+	    modelView.addObject("ListadoAlumnos", alumnosFiltrados);
+
+	    return modelView;
+	}
+	
+	@GetMapping("/consultarAlumno")
+	public ModelAndView consultarAlumno(@RequestParam("carrera") String codigoCarrera) {
+	    List<Alumno> alumnosConsultados = alumnoService.consultarPorCarrera(codigoCarrera);
+
+	    ModelAndView modelView = new ModelAndView("listaDeAlumnos");
+	    modelView.addObject("ListadoAlumnos", alumnosConsultados);
+
+	    return modelView;
+	}
+	*/
 }

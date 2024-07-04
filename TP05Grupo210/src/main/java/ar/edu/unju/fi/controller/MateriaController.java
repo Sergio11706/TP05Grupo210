@@ -15,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.model.Materia;
 import ar.edu.unju.fi.service.AlumnoService;
-import ar.edu.unju.fi.service.CarreraService;
 import ar.edu.unju.fi.service.DocenteService;
 import ar.edu.unju.fi.service.MateriaService;
 import jakarta.validation.Valid;
@@ -35,9 +34,6 @@ public class MateriaController {
 	@Autowired
 	DocenteService docenteService;
 	
-	@Autowired
-	CarreraService carreraService;
-	
 	List<String> codigos = new ArrayList<>();
 	
 	@GetMapping("/formularioMateria")
@@ -47,7 +43,6 @@ public class MateriaController {
 		modelView.addObject("band", false);
 		modelView.addObject("alumnos", alumnoService.mostrarAlumnos());
 		modelView.addObject("docentes", docenteService.mostrarDocentes());
-		modelView.addObject("carreras", carreraService.mostrarCarreras());
 		
 		return modelView;
 	}
@@ -62,7 +57,6 @@ public class MateriaController {
 			modelView.setViewName("formMateria");
 			modelView.addObject("alumnos", alumnoService.mostrarAlumnos());
 			modelView.addObject("docentes", docenteService.mostrarDocentes());
-			modelView.addObject("carreras", carreraService.mostrarCarreras());
 		}
 		else {
 			codigos.add(materia.getCodigo());
@@ -91,7 +85,6 @@ public class MateriaController {
 		modelView.addObject("band", true);
 		modelView.addObject("alumnos", alumnoService.mostrarAlumnos());
 		modelView.addObject("docentes", docenteService.mostrarDocentes());
-		modelView.addObject("carreras", carreraService.mostrarCarreras());
 		
 		return modelView;
 	}
@@ -104,7 +97,6 @@ public class MateriaController {
 			modelView.setViewName("formMateria");
 			modelView.addObject("alumnos", alumnoService.mostrarAlumnos());
 			modelView.addObject("docentes", docenteService.mostrarDocentes());
-			modelView.addObject("carreras", carreraService.mostrarCarreras());
 		}
 		else {
 			materiaService.modificarMateria(materia);

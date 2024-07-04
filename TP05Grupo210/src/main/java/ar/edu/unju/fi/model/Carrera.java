@@ -42,6 +42,6 @@ public class Carrera {
 	private List<Materia> materias;
 	
 	@OneToMany(mappedBy="carrera", cascade=CascadeType.ALL)
-	private List<Materia> alumnos;
+	private List<Alumno> alumnos;
 	
 }

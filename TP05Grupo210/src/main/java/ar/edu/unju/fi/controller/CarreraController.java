@@ -74,9 +74,6 @@ public class CarreraController {
 			
 			modelView = mostrarCarreras();
 		}
-			
-		
-		modelView.addObject("ListadoCarreras", carreraService.mostrarCarreras());
 		
 		return modelView;
 	}

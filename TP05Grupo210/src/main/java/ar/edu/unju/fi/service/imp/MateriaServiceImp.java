@@ -20,6 +20,9 @@ public class MateriaServiceImp implements MateriaService {
 	@Autowired
 	MateriaMapDTO materiaMapDTO;
 	
+	@Autowired
+	Materia materia;
+	
 	@Override
 	public void guardarMateria(MateriaDTO materiaDTO) {
 		materiaDTO.setEstadoDTO(true);
@@ -43,27 +46,27 @@ public class MateriaServiceImp implements MateriaService {
 	}
 
 	@Override
-	public void modificarMateria(MateriaDTO materiaDTO) {
-		Materia materiaConvertida = materiaMapDTO.convertirMateriaDTOMateria(materiaDTO);
-		List<Materia> materias = materiaRepository.findAll();
-		for (int i = 0; i < materias.size(); i++) {
-	        Materia m = materias.get(i);
-	        if (m.getCodigo().equals(materiaConvertida.getCodigo())) {
-	        	materiaConvertida.setEstado(true);
-	            materias.set(i, materiaConvertida);
-	            materiaRepository.save(materiaConvertida);
-	            break;
-	        }
-	    }
-	}
-
-	@Override
 	public MateriaDTO buscarMateria(String codigo) {
 		List<Materia> materias = materiaRepository.findAll();
 		for(Materia i : materias) {
 			if(i.getCodigo().equals(codigo)) return materiaMapDTO.convertirMateriaMateriaDTO(i);
 		}
 		return null;
+	}
+
+	@Override
+	public void modificarMateria(Materia materia) {
+		List<Materia> materias = materiaRepository.findAll();
+		for (int i = 0; i < materias.size(); i++) {
+	        Materia m = materias.get(i);
+	        if (m.getCodigo().equals(materia.getCodigo())) {
+	        	materia.setEstado(true);
+	            materias.set(i, materia);
+	            materiaRepository.save(materia);
+	            break;
+	        }
+	    }
+		
 	}
 
 }

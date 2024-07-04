@@ -27,7 +27,7 @@
 		
 		<div >
 			<label for="nombre" class="form-label">Nombre</label>
-			<input type="text" class="form-control" id="nombre" data-th-field="*{nombre}" required title="Ingresa un nombre valido, sin números o caracteres especiales." pattern="[A-Za-z\s]+">
+			<input type="text" class="form-control" id="nombre" data-th-field="*{nombre}" required title="Ingresa un nombre valido, sin números o caracteres especiales." pattern="[A-Za-z1-9\s1]+">
 		</div>
 		
 		<div>
@@ -46,7 +46,7 @@
 	    <div class="form-group">
 	         <label class="form-label">Alumnos</label>
 	         <select class="form-control" data-th-field="*{alumnos}" required multiple>
-	              <option data-th-each="Alumno : ${alumnos}" data-th-value="${Alumno.dni}" data-th-text="${Alumno.dni + ' ' + Alumno.nombre + ' ' + Alumno.apellido}"></option>
+	              <option data-th-each="alumnos : ${alumnos}" data-th-value="${alumnos.dni}" data-th-text="${alumnos.dni + ' ' + alumnos.nombre + ' ' + alumnos.apellido}"></option>
 	         </select>
 	   </div>
 	<br>

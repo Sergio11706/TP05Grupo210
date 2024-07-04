@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import ar.edu.unju.fi.DTO.AlumnoDTO;
 import ar.edu.unju.fi.map.AlumnoMapDTO;
 import ar.edu.unju.fi.model.Alumno;
+import ar.edu.unju.fi.model.Materia;
 import ar.edu.unju.fi.repository.AlumnoRepository;
 import ar.edu.unju.fi.service.AlumnoService;
 
@@ -18,6 +19,9 @@ public class AlumnoServiceImp implements AlumnoService {
 	
 	@Autowired
 	AlumnoMapDTO alumnoMapDTO;
+	
+	@Autowired
+	Alumno alumno;
 	
 	@Override
 	public void guardarAlumno(AlumnoDTO alumnoDTO) {
@@ -45,26 +49,26 @@ public class AlumnoServiceImp implements AlumnoService {
 	}
 
 	@Override
-	public void modificarAlumno(AlumnoDTO alumnoDTO) {
-		Alumno alumnoConvertido = alumnoMapDTO.convertirAlumnoDTOAlumno(alumnoDTO);
-		List<Alumno> alumnos = alumnoRepository.findAll();
-		for (int i = 0; i < alumnos.size(); i++) {
-			Alumno a = alumnos.get(i);
-			if (a.getDni().equals(alumnoConvertido.getDni())) {
-				alumnos.set(i, alumnoConvertido);
-				alumnoConvertido.setEstado(true);
-				alumnoRepository.save(alumnoConvertido);
-				break;
-			}
-		}
-	}
-	
-	@Override
 	public AlumnoDTO buscarAlumno(String dni) {
 		List<Alumno> alumnos = alumnoRepository.findAll();
 		for(Alumno a : alumnos) {
 			if(a.getDni().equals(dni)) return alumnoMapDTO.convertirAlumnoAlumnoDTO(a);
 		}
 		return null;
+	}
+
+	@Override
+	public void modificarAlumno(Alumno alumno) {
+		List<Alumno> alumnos = alumnoRepository.findAll();
+		for (int i = 0; i < alumnos.size(); i++) {
+			Alumno a = alumnos.get(i);
+			if (a.getDni().equals(alumno.getDni())) {
+				alumnos.set(i, alumno);
+				alumno.setEstado(true);
+				alumnoRepository.save(alumno);
+				break;
+			}
+		}
+		
 	}
 }

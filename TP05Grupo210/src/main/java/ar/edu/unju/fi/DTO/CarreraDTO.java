@@ -12,12 +12,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Component
-public class CarreraDTO {
+public class CarreraDTO {	
 	
 	private String codigoDTO;
 	private String nombreDTO;
 	private byte cantAniosDTO;
 	private boolean estadoDTO;
-	private List<Materia> materiaDTO;
-	private List<Alumno> alumnoDTO;
+	private List<Materia> materiasDTO;
+	private List<Alumno> alumnosDTO;
 }

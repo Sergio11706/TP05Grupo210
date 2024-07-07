@@ -145,26 +145,7 @@ public class MateriaController {
 		
 		return modelView;
 	}
-
 	
-	@GetMapping("/inscripcionMateria")
-	public ModelAndView inscripcionMateria(){
-		ModelAndView modelView = new ModelAndView("inscripcionMateria");
-		modelView.addObject("nuevaMateria", nuevaMateria);
-		modelView.addObject("materias", materiaMapDTO.convertirListaMateriasDTOListaMaterias(materiaService.mostrarMaterias()) );
-		modelView.addObject("alumnos", alumnoMapDTO.convertirListaAlumnosDTOListaAlumnos(alumnoService.mostrarAlumnos()) );
-		
-		return modelView;
-	}
-	
-	@PostMapping("/guardarInscripcion")
-	public ModelAndView guardarInscripcion(@ModelAttribute("nuevaMateria") Materia materia) {
-		Materia materiaModificada = materiaService.buscarMateria(materia.getCodigo());
-		materiaModificada.setAlumnos(materia.getAlumnos());
-		materiaService.modificarMateria(materiaModificada);
-		
-		return mostrarMaterias();
-	}
 	
 	@GetMapping("/listaDeMaterias")
 	public ModelAndView mostrarMaterias() {

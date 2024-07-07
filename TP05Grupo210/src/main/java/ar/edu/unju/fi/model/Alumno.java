@@ -10,16 +10,18 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+
+import ar.edu.unju.fi.validations.DateRange;
 
 @Data
 @Component
@@ -42,11 +44,11 @@ public class Alumno {
 	@Email(message="Ingrese un correo valido")
 	private String email;
 	
-	@Pattern(regexp="^(388\\d{5,}|154\\d{5,})$", message="Su número de teléfono debe empezar con 388 o 154 y deben ser 8 digitos")
+	@Pattern(regexp="^(388\\d{5,}|154\\d{5,})$", message="Su número de teléfono debe empezar con 388 y debe tener 8 digitos")
 	private String telefono;
 	
 	@NotNull(message="Debe ingresar la fecha")
-	@Past(message="La fecha tiene que ser anterior a la actual")
+	@DateRange
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate nacimiento;
 	
@@ -60,11 +62,14 @@ public class Alumno {
 	private String LU;
 	
 	private boolean estado;
-
-	@ManyToMany(mappedBy= "alumnos")
+	
+	@ManyToMany
+	@JoinTable(name = "materias-alumnos",
+	joinColumns = @JoinColumn(name = "dni_alumno"),
+	inverseJoinColumns = @JoinColumn(name = "codigo_materia"))
 	private List<Materia> materias;
 	
 	@ManyToOne(fetch= FetchType.LAZY)
-	@JoinColumn(name= "carrara_codigo")
+	@JoinColumn(name= "codigo_carrera")
 	private Carrera carrera;
 }

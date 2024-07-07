@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
 <meta name="viewport" content="	width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="/css/styles.css">
 
 <title>FormularioMateria</title>
 </head>
@@ -15,63 +15,62 @@
 		</div>
 		<div data-th-replace="~{fragments/navbar :: navbar}">
 		</div>
+		<div class="separator2"></div>
+		<div class="separator"></div>
 	</header>
 
 	<div class="container text-center">
 		<h1 class="mb-3 mt-2">FORMULARIO MATERIA</h1>
 		<form data-th-object = "${nuevaMateria}" data-th-action="${band}?@{/modificarMateria}:@{/guardarMateria}" method="post">
-		
-		<div class="d-flex flex-column align-items-center bg-dark text-light">
-			<div class="col-sm-8 mb-2 mt-4">
-				<label for="codigo" class="form-label">Codigo</label> 
-				<input type="text" class="form-control" id="codigo" placeholder="Ingrese un codigo con un formato similar al siguiente: (cod001) " data-th-field="*{codigo}" data-th-readonly="${band}" required>				
-				<p class="form-text text-danger" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></p>
+			<div class="d-flex flex-column align-items-center bg-dark text-light">
+				<div class="col-sm-9 mb-2 mt-4">
+					<label for="codigo" class="form-label">Codigo</label> 
+					<input type="text" class="form-control" id="codigo" placeholder="Ingrese un codigo con un formato similar al siguiente: (cod001) " data-th-field="*{codigo}" data-th-readonly="${band}" required>				
+					<p class="form-text text-danger" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></p>
+				</div>
+				<div class="col-sm-9 mb-2 mt-2">
+					<label for="nombre" class="form-label">Nombre</label>
+					<input type="text" class="form-control" id="nombre" placeholder="Ingresar unicamente letras o numeros" data-th-field="*{nombre}" pattern="[A-Za-z1-9\s]+" title="Por favor, ingrese solo letras, numeros o espacios" required>
+					<p class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>
+				</div>
+				<div class="col-sm-9 mb-2 mt-2">
+					<label for="curso" class="form-label">Curso</label>
+					<input type="text" class="form-control" id="curso" placeholder="Ingresar unicamente letras o numeros" data-th-field="*{curso}" pattern="[A-Za-z1-9\s]+" title="Por favor, ingrese solo letras, numeros o espacios" required>
+					<p class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>
+				</div>
+				<div class="col-sm-9 mb-2 mt-2">
+					<label for="cantHoras" class="form-label">Cantidad de Horas</label>
+					<input type="number" class="form-control" id="cantHoras" data-th-field="*{cantHoras}">
+					<p class="form-text text-danger" th:if="${#fields.hasErrors('cantHoras')}" th:errors="*{cantHoras}"></p>
+				</div>
+				<div class="col-sm-9 mb-2 mt-2">
+					<label for="modalidad" class="form-label">Modalidad</label>
+					<select id="modalidad" class="form-control" data-th-field="*{modalidad}">
+						<option value="Presencial">Presencial</option>
+						<option value="Virtual">Virtual</option>
+					</select>
+				</div>
+				<div class="col-sm-9 mb-2 mt-2">
+	            	<label class="form-label">Docente</label>
+	            	<select class="form-control" data-th-field="*{docente.legajo}" required>
+	            		<option th:if="${band}" data-th-value="*{docente.legajo}" data-th-text="*{docente.legajo + ' ' + docente.nombre + ' ' + docente.apellido}"></option>
+	                	<option data-th-each="Docente : ${docentes}" data-th-value="${Docente.legajo}" data-th-text="${Docente.legajo + ' ' + Docente.nombre + ' ' + Docente.apellido}"></option>
+	            	</select>
+	        	</div>
+	        	<div class="col-sm-9 mb-5 mt-2">
+	            	<label class="form-label">Carrera</label>
+	            	<select class="form-control" data-th-field="*{carrera.codigo}" required>
+	                	<option data-th-each="Carrera : ${carreras}" data-th-value="${Carrera.codigo}" data-th-text="${Carrera.codigo + ' ' + Carrera.nombre}"></option>
+	            	</select>
+	        	</div>
 			</div>
-			<div class="col-sm-8 mb-2 mt-4">
-				<label for="nombre" class="form-label">Nombre</label>
-				<input type="text" class="form-control" id="nombre" placeholder="Ingresar unicamente letras o numeros" data-th-field="*{nombre}" pattern="[A-Za-z1-9\s]+" title="Por favor, ingrese solo letras, numeros o espacios" required>
-				<p class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>
-			</div>
-			<div class="col-sm-8 mb-2 mt-4">
-				<label for="curso" class="form-label">Curso</label>
-				<input type="text" class="form-control" id="curso" placeholder="Ingresar unicamente letras o numeros" data-th-field="*{curso}" pattern="[A-Za-z1-9\s]+" title="Por favor, ingrese solo letras, numeros o espacios" required>
-				<p class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>
-			</div>
-			<div class="col-sm-8 mb-2 mt-4">
-				<label for="cantHoras" class="form-label">Cantidad de Horas</label>
-				<input type="number" class="form-control" id="cantHoras" data-th-field="*{cantHoras}">
-				<p class="form-text text-danger" th:if="${#fields.hasErrors('cantHoras')}" th:errors="*{cantHoras}"></p>
-			</div>
-			<div class="col-sm-8 mb-2 mt-4">
-				<label for="modalidad" class="form-label">Modalidad</label>
-				<select id="modalidad" class="form-control" data-th-field="*{modalidad}">
-					<option value="Presencial">Presencial</option>
-					<option value="Virtual">Virtual</option>
-				</select>
-			</div>
-			<div class="mb-e col-sm-8 mb-2 mt-4">
-	            <label class="form-label">Docente</label>
-	            <select class="form-control" data-th-field="*{docente.legajo}" required>
-	            	<option th:if="${band}" data-th-value="*{docente.legajo}" data-th-text="*{docente.legajo + ' ' + docente.nombre + ' ' + docente.apellido}"></option>
-	                <option data-th-each="Docente : ${docentes}" data-th-value="${Docente.legajo}" data-th-text="${Docente.legajo + ' ' + Docente.nombre + ' ' + Docente.apellido}"></option>
-	            </select>
-	        </div>
-	        <div class="mb-e col-sm-8 mb-2 mt-4">
-	            <label class="form-label">Carrera</label>
-	            <select class="form-control" data-th-field="*{carrera.codigo}" required>
-	                <option data-th-each="Carrera : ${carreras}" data-th-value="${Carrera.codigo}" data-th-text="${Carrera.codigo + ' ' + Carrera.nombre}"></option>
-	            </select>
-	        </div>
-	        
-	        <br>
-		</div>
-		
 			<button type="submit" class="btn btn-primary col-sm-4 mt-3 mb-3" >Guardar</button>
-		
 		</form>
 	</div>
 
 	<footer>
+		<div class="separator"></div>
+		<div class="separator2"></div>
 		<div data-th-replace="~{fragments/footer :: footer}">
 		</div>
 	</footer>

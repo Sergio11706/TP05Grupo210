@@ -6,11 +6,18 @@
 	margin-left: 20%;	
 }
 
-ul{
-  list-style-type: none;
+.separator {
+	height: 40px;
+	background-color: #ccc;
+	margin: 10px 0;
 }
 
-.tabla {
-	background-color: red;
-	height: 500px;
+.separator2 {
+	height: 1px;
+	background-color: #ccc;
+	margin: 15px 0;
+}
+
+ul{
+  list-style-type: none;
 }

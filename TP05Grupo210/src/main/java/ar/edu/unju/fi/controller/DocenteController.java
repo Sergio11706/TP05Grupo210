@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unju.fi.model.Docente;
 import ar.edu.unju.fi.service.DocenteService;
-import ar.edu.unju.fi.service.MateriaService;
 import jakarta.validation.Valid;
 
 @Controller

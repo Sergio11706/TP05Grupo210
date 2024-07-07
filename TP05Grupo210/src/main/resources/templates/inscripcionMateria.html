@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
 <meta name="viewport" content="	width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="/css/styles.css">
 
 <title>IncripcionMateria</title>
 </head>
@@ -15,36 +15,40 @@
 		</div>
 		<div data-th-replace="~{fragments/navbar :: navbar}">
 		</div>
+		<div class="separator2"></div>
+		<div class="separator"></div>
 	</header>
 
-	<div class="container-sm text-center">
+	<div class="container text-center">
 		<h1 class="mb-3 mt-2">INSCRIPCION A MATERIA</h1>
 		<form data-th-object="${nuevoAlumno}" data-th-action="@{/guardarInscripcion}" method="post">
 			<div class="d-flex flex-column align-items-center bg-dark text-light">
-				<div class="mt-4 mb-4 col-sm-8">
+				<div class="col-sm-9 mb-2 mt-4">
 					<label class="form-label">Alumnos</label>
 					<select class="form-control" data-th-field="*{dni}" required multiple>
 						<option data-th-each="Alumno : ${alumnos}" data-th-value="${Alumno.dni}" data-th-text="${Alumno.dni + ' ' + Alumno.nombre + ' ' + Alumno.apellido + ' ' + Alumno.LU}"></option>
 					</select>
 				</div>
-				<div class="mt-4 mb-4 col-sm-8">
+				<div class="col-sm-9 mb-2 mt-2">
 					<label class="form-label">Materias</label>
 					<select class="form-control" data-th-field="*{materias}" required multiple>
 						<option data-th-each="Materia : ${materias}" data-th-value="${Materia.codigo}" data-th-text="${Materia.codigo + ' ' + Materia.nombre}"></option>
 					</select>
 				</div>
-				<div class="mt-4 mb-4 col-sm-8">
+				<div class="col-sm-9 mb-5 mt-2">
 					<label class="form-label">Carreras</label>
 					<select class="form-control" data-th-field="*{carrera.codigo}" required multiple>
 						<option data-th-each="Carrera : ${carreras}" data-th-value="${Carrera.codigo}" data-th-text="${Carrera.codigo + ' ' + Carrera.nombre}"></option>
 					</select>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-primary col-sm-2 mt-3 mb-3">Inscribir</button>
+			<button type="submit" class="btn btn-primary col-sm-4 mt-3 mb-3">Inscribir</button>
 		</form>
 	</div>
 	
 	<footer>
+		<div class="separator"></div>
+		<div class="separator2"></div>
 		<div data-th-replace="~{fragments/footer :: footer}">
 		</div>
 	</footer>

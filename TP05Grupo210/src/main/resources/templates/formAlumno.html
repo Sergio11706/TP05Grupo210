@@ -3,18 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
 <meta name="viewport" content="	width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="/css/styles.css">
 
 <title>FormularioAlumno</title>
 </head>
 <body>
-
 	<header>
 		<div data-th-replace="~{fragments/header :: header}">
 		</div>
 		<div data-th-replace="~{fragments/navbar :: navbar}">
 		</div>
+		<div class="separator2"></div>
+		<div class="separator"></div>
 	</header>
 
 	<div class="container text-center">
@@ -56,7 +57,7 @@
 					<input type="text" class="form-control" id="domicilio" data-th-field="*{domicilio}" placeholder="Ingrese su domicilio">
 					<p class="form-text text-danger" th:if="${#fields.hasErrors('domicilio')}" th:errors="*{domicilio}">
 				</div>
-				<div class="col-sm-9 mb-4 mt-2">
+				<div class="col-sm-9 mb-5 mt-2">
 					<label for="lu" class="form-label">Libreta Universitaria</label>
 					<input type="text" class="form-control" id="lu" data-th-field="*{LU}" placeholder="Ingrese libreta universitaria (Ej: 12345)">
 					<p class="form-text text-danger" th:if="${#fields.hasErrors('LU')}" th:errors="*{LU}">
@@ -67,6 +68,8 @@
 	</div>
 
 	<footer>
+		<div class="separator"></div>
+		<div class="separator2"></div>
 		<div data-th-replace="~{fragments/footer :: footer}">
 		</div>
 	</footer>

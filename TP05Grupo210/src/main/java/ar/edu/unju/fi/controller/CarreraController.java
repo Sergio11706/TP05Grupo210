@@ -11,11 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unju.fi.model.Alumno;
+import ar.edu.unju.fi.map.MateriaMapDTO;
 import ar.edu.unju.fi.model.Carrera;
-import ar.edu.unju.fi.service.AlumnoService;
 import ar.edu.unju.fi.service.CarreraService;
-import ar.edu.unju.fi.service.MateriaService;
 import jakarta.validation.Valid;
 
 @Controller
@@ -24,14 +22,20 @@ public class CarreraController {
 	@Autowired
 	Carrera nuevaCarrera;
 	
+	//@Autowired
+	MateriaMapDTO materiaMapDTO;
+	
+	//@Autowired
+	//AlumnoMapDTO alumnoMapDTO;
+	
 	@Autowired
 	CarreraService carreraService;
 	
-	@Autowired
-	MateriaService materiaService;
+	//@Autowired
+	//MateriaService materiaService;
 	
-	@Autowired
-	AlumnoService alumnoService;
+	//@Autowired
+	//AlumnoService alumnoService;
 	
 	List<String> codigos = new ArrayList<>();
 	
@@ -43,9 +47,9 @@ public class CarreraController {
 		
 		modelView.addObject("nuevaCarrera", nuevaCarrera);
 		
-		modelView.addObject("materias", materiaService.mostrarMaterias());	
+		//modelView.addObject("materias", materiaMapDTO.convertirListaMateriasDTOListaMaterias(materiaService.mostrarMaterias()));	
 		
-		modelView.addObject("alumnos", alumnoService.mostrarAlumnos());	
+		//modelView.addObject("alumnos", alumnoMapDTO.convertirListaAlumnosDTOListaAlumnos(alumnoService.mostrarAlumnos()));	
 		
 		modelView.addObject("band", false);
 		
@@ -64,9 +68,8 @@ public class CarreraController {
 			
 			modelView.setViewName("formCarrera");
 			
-			modelView.addObject("materias", materiaService.mostrarMaterias());
-			
-			modelView.addObject("alumnos", alumnoService.mostrarAlumnos());	
+			//modelView.addObject("materias", materiaMapDTO.convertirListaMateriasDTOListaMaterias(materiaService.mostrarMaterias()));	
+			//modelView.addObject("alumnos", alumnoMapDTO.convertirListaAlumnosDTOListaAlumnos(alumnoService.mostrarAlumnos()));		
 		}
 		else {
 			codigos.add(carreraAguardar.getCodigo());
@@ -97,16 +100,22 @@ public class CarreraController {
 	 
 	 
 	@GetMapping("/modificarCarrera/{codigo}")
-	public ModelAndView formModificarCarrera(@PathVariable("codigo") String codigo) {
+	public ModelAndView formModificarCarrera(@PathVariable(name="codigo") String codigo) {
 		
 		Carrera carreraModificada = carreraService.buscarCarrera(codigo);
 
 		ModelAndView modelView = new ModelAndView("formCarrera");
 		
 		modelView.addObject("nuevaCarrera", carreraModificada);
-		modelView.addObject("materias", materiaService.mostrarMaterias());	
-		modelView.addObject("alumnos", alumnoService.mostrarAlumnos());	
+		
 		modelView.addObject("band", true);
+		
+		//modelView.addObject("materias", materiaMapDTO.convertirListaMateriasDTOListaMaterias(materiaService.mostrarMaterias()));	
+		
+		//modelView.addObject("alumnos", alumnoMapDTO.convertirListaAlumnosDTOListaAlumnos(alumnoService.mostrarAlumnos()));	
+		
+		
+		
 		return modelView;
 	}
 
@@ -118,15 +127,19 @@ public class CarreraController {
 		if(result.hasErrors()) {
 	
 			modelView.setViewName("formCarrera");
-			modelView.addObject("materias", materiaService.mostrarMaterias());	
-			modelView.addObject("alumnos", alumnoService.mostrarAlumnos());	
+			
+			//modelView.addObject("materias", materiaMapDTO.convertirListaMateriasDTOListaMaterias(materiaService.mostrarMaterias()));	
+			
+			//modelView.addObject("alumnos", alumnoMapDTO.convertirListaAlumnosDTOListaAlumnos(alumnoService.mostrarAlumnos()));	
+		
 		}
 		else {
 			carreraService.modificarCarrera(carrera);
-			
 			modelView = mostrarCarreras();
+			//modelView.setViewName("listaDeCarreras");
+			//modelView.addObject("listadoCarreras", carreraService.mostrarCarreras());
 		}
-		
+
 		return modelView;
 	}
 	
@@ -139,16 +152,4 @@ public class CarreraController {
 
 		return modelView;
 }
-
-	
-	@GetMapping("/consultarAlumnosCarrera/{codigo}")
-	public ModelAndView consultarAlumnosCarrera(@PathVariable(name="codigo") String codigo) {
-	    Carrera carrera = carreraService.buscarCarrera(codigo);
-	    List<Alumno> alumnos = carrera.getAlumnos();
-
-	    ModelAndView modelView = new ModelAndView("listaDeAlumnos");
-	    modelView.addObject("ListadoAlumnos", alumnos);
-
-	    return modelView;
-	}
 }

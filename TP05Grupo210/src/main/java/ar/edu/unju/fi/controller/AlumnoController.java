@@ -40,22 +40,7 @@ public class AlumnoController {
 		modelView.addObject("band", false);
 		return modelView;
 	}
-	/*
-	@GetMapping("/inscripcion")
-    public String mostrarFormulario(Alumno alumno) {
-        Alumno nuevoAlumno = new Alumno();
-        alumno.addAttribute("nuevoAlumno", nuevoAlumno);
-        return "inscripcionMateria";
-    }
 	
-	@GetMapping("/filtrarAlumno")
-	public ModelAndView filtrarAlumnos(@RequestParam("materia") String codigoMateria) {
-	    List<AlumnoDTO> alumnosFiltrados = alumnoService.filtrarPorMateria(codigoMateria);
-	    ModelAndView modelView = new ModelAndView("listaDeAlumnos");
-	    modelView.addObject("ListadoAlumnos", alumnosFiltrados);
-	    return modelView;
-	}
-	*/
 	@PostMapping("/guardarAlumno")
 	public ModelAndView guardarAlumno(@Valid @ModelAttribute("nuevoAlumno") Alumno alumno, BindingResult result) {
 		

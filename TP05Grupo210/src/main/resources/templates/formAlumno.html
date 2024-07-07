@@ -21,42 +21,44 @@
 		<h1 class="mb-3 mt-2">FORMULARIO ALUMNO</h1>
 		<form data-th-object = "${nuevoAlumno}" data-th-action="${band}?@{/modificarAlumno}:@{/guardarAlumno}" method="post">
 			<div class="d-flex flex-column align-items-center bg-dark text-light">
-				<div class="col-sm-8 mb-2 mt-4">
+				<div class="col-sm-9 mb-2 mt-4">
 					<label for="dni" class="form-label">DNI</label> 
-					<input type="text" class="form-control" id="dni" data-th-field="*{dni}" data-th-readonly="${band}">
+					<input type="text" class="form-control" id="dni" data-th-field="*{dni}" data-th-readonly="${band}" placeholder="Ingrese su DNI (Ej: 40999888)">
 					<p class="form-text text-danger" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}">		
 				</div>
-				<div class="col-sm-8">
+				<div class="col-sm-9">
 					<label for="nombre" class="form-label">Nombre</label>
-					<input type="text" class="form-control" id="nombre" data-th-field="*{nombre}">
+					<input type="text" class="form-control" id="nombre" data-th-field="*{nombre}" placeholder="Ingrese su nombre">
 					<p class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">
 				</div>
-				<div class="col-sm-8 mb-2 mt-2">
+				<div class="col-sm-9 mb-2 mt-2">
 					<label for="apellido" class="form-label">Apellido</label>
-					<input type="text" class="form-control" id="apellido" data-th-field="*{apellido}">
+					<input type="text" class="form-control" id="apellido" data-th-field="*{apellido}" placeholder="Ingrese su apellido">
 					<p class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">
 				</div>
-				<div class="col-sm-8 mb-2 mt-2">
+				<div class="col-sm-9 mb-2 mt-2">
 					<label for="email" class="form-label">Email</label>
-					<input type="email" class="form-control" id="email" data-th-field="*{email}">
+					<input type="email" class="form-control" id="email" data-th-field="*{email}" placeholder="Ingrese su correo (Ej: alumno@gmail/hotmail.com)">
+					<p class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
 				</div>
-				<div class="col-sm-8 mb-2 mt-2">
+				<div class="col-sm-9 mb-2 mt-2">
 					<label for="telefono" class="form-label">Telefono</label>
-					<input type="number" class="form-control" id="telefono" data-th-field="*{telefono}">
+					<input type="number" class="form-control" id="telefono" data-th-field="*{telefono}" placeholder="Ingrese su numero de telefono (Ej: 3885112233)">
 					<p class="form-text text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}">
 				</div>
-				<div class="col-sm-8 mb-2 mt-2">
+				<div class="col-sm-9 mb-2 mt-2">
 					<label for="nacimiento" class="form-label">Fecha de Nacimiento</label>
 					<input type="date" class="form-control" id="nacimiento" data-th-field="*{nacimiento}">
+					<p class="form-text text-danger" th:if="${#fields.hasErrors('nacimiento')}" th:errors="*{nacimiento}">
 				</div>
-				<div class="col-sm-8 mb-2 mt-2">
+				<div class="col-sm-9 mb-2 mt-2">
 					<label for="domicilio" class="form-label">Domicilio</label>
-					<input type="text" class="form-control" id="domicilio" data-th-field="*{domicilio}">
+					<input type="text" class="form-control" id="domicilio" data-th-field="*{domicilio}" placeholder="Ingrese su domicilio">
 					<p class="form-text text-danger" th:if="${#fields.hasErrors('domicilio')}" th:errors="*{domicilio}">
 				</div>
-				<div class="col-sm-8 mb-4 mt-2">
+				<div class="col-sm-9 mb-4 mt-2">
 					<label for="lu" class="form-label">Libreta Universitaria</label>
-					<input type="text" class="form-control" id="lu" data-th-field="*{LU}">
+					<input type="text" class="form-control" id="lu" data-th-field="*{LU}" placeholder="Ingrese libreta universitaria (Ej: 12345)">
 					<p class="form-text text-danger" th:if="${#fields.hasErrors('LU')}" th:errors="*{LU}">
 				</div>
 			</div>

@@ -35,9 +35,9 @@ public class Docente {
 	@Column(nullable = false)
 	private String email;
 	
-	@Column(nullable = false)
-	@Pattern(regexp="[0-9]*")
-	private String telefono;
+    @Column(nullable = false)
+    @Pattern(regexp = "\\d{3} \\d{3}-\\d{4}", message = "El número de teléfono debe seguir el formato 123 456-7890")
+    private String telefono;
 	
 	@Column(nullable = false)
 	private boolean estado;

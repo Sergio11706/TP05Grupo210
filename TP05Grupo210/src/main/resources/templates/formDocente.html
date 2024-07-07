@@ -24,30 +24,30 @@
 		<div class="d-flex flex-column align-items-center bg-dark text-light">
 			<div class="col-sm-8 mb-2 mt-4">
 				<label for="legajo" class="form-label">Legajo</label> 
-				<input type="text" class="form-control" id="legajo" data-th-field="*{legajo}" data-th-readonly="${band}" required>
+				<input type="text" class="form-control" id="legajo" placeholder="Proporcione un legajo de 3 caracteres como minimo" data-th-field="*{legajo}" data-th-readonly="${band}" required>
 				<p class="form-text text-danger" data-th-if="${#fields.hasErrors('legajo')}" data-th-errors="*{legajo}"></p>				
 			</div>
 			
 			<div class="col-sm-8 mb-2 mt-4">
 				<label for="nombre" class="form-label">Nombre</label>
-				<input type="text" class="form-control" id="nombre" data-th-field="*{nombre}" required>
+				<input type="text" class="form-control" id="nombre" placeholder="Proporcione un nombre para el docente" data-th-field="*{nombre}" required>
 				<p class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>				
 			</div>
 			
 			<div class="col-sm-8 mb-2 mt-4">
 				<label for="apellido" class="form-label">Apellido</label>
-				<input type="text" class="form-control" id="apellido" data-th-field="*{apellido}" required>
+				<input type="text" class="form-control" id="apellido" placeholder="Proporcione un un apellido para el docente" data-th-field="*{apellido}" required>
 				<p class="form-text text-danger" data-th-if="${#fields.hasErrors('apellido')}" data-th-errors="*{apellido}"></p>				
 			</div>
 			
 			<div class="col-sm-8 mb-2 mt-4">
 				<label for="email" class="form-label">Email</label>
-				<input type="email" class="form-control" id="email" data-th-field="*{email}" required>			
+				<input type="email" class="form-control" id="email" placeholder="Proporcione un correo electronico" data-th-field="*{email}" required>			
 			</div>
 			
 			<div class="col-sm-8 mb-2 mt-4">
 				<label for="telefono" class="form-label">Número de telefono</label>
-				<input type="number" class="form-control" id="telefono" data-th-field="*{telefono}" required>
+				<input type="text" class="form-control" id="telefono" placeholder="Proporcione un numero con el formato 123 456-7890" data-th-field="*{telefono}" required>
 				<p class="form-text text-danger" data-th-if="${#fields.hasErrors('telefono')}" data-th-errors="*{telefono}"></p>				
 			</div>
 

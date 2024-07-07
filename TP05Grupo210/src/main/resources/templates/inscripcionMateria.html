@@ -19,7 +19,7 @@
 
 	<div class="container-sm text-center">
 		<h1 class="mb-3 mt-2">INSCRIPCION A MATERIA</h1>
-		<form data-th-object="${nuevoAlumno}" data-th-action="${band}?@{/modificarAlumno}:@{/guardarAlumno}" method="post">
+		<form data-th-object="${nuevaMateria}" data-th-action="@{/guardarInscripcion}" method="post">
 			<div class="d-flex flex-column align-items-center bg-dark text-light">
 				<div class="mt-4 mb-4 col-sm-8">
 					<label class="form-label">Alumnos</label>
@@ -29,12 +29,12 @@
 				</div>
 				<div class="mt-4 mb-4 col-sm-8">
 					<label class="form-label">Materias</label>
-					<select class="form-control" data-th-field="*{materias}" required multiple>
+					<select class="form-control" data-th-field="*{codigo}" required multiple>
 						<option data-th-each="Materia : ${materias}" data-th-value="${Materia.codigo}" data-th-text="${Materia.codigo + ' ' + Materia.nombre}"></option>
 					</select>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-primary col-sm-2 mt-3 mb-3">Guardar</button>
+			<button type="submit" class="btn btn-primary col-sm-2 mt-3 mb-3">Inscribir</button>
 		</form>
 	</div>
 	

@@ -15,6 +15,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
@@ -27,7 +28,10 @@ public class Materia {
 	@Pattern(regexp="^[a-z]{3}[0-9]{3}$", message="El formato debe ser de 3 letras minúsculas seguidas de 3 números")
 	private String codigo;
 	
+	@Size(min=2, max=20, message="El nombre debe contener como minimo 2 caracteres y como maximo 20 caracteres")
 	private String nombre;
+	
+	@Size(max=20, message="Solo se permiten hasta 20 caracteres")
 	private String curso;
 	
 	@Min(value=2, message="La cantidad mínima de horas debe ser mayor o igual a 2")

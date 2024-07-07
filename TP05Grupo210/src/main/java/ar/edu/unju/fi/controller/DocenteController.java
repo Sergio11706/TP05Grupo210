@@ -22,9 +22,6 @@ public class DocenteController {
 	@Autowired
 	DocenteService docenteService;
 	
-	@Autowired
-	MateriaService materiaService;
-	
 	@GetMapping("/listaDeDocentes")
 	public ModelAndView mostrarDocentes() {
 		ModelAndView modelView = new ModelAndView("listaDeDocentes");

@@ -24,7 +24,7 @@
 		<div class="d-flex flex-column align-items-center bg-dark text-light">
 			<div class="col-sm-8 mb-2 mt-4">
 				<label for="codigo" class="form-label">Codigo</label> 
-				<input type="text" class="form-control" id="codigo" placeholder="Ingrese un codigo con un formato similar al siguiente: (cod001) " data-th-field="*{codigo}" data-th-readonly="${band}" required>				
+				<input type="text" class="form-control" id="codigo" placeholder="Formato del codigo: (cod001) " data-th-field="*{codigo}" data-th-readonly="${band}" required>				
 				<p class="form-text text-danger" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></p>
 			</div>
 			<div class="col-sm-8 mb-2 mt-4">
@@ -39,7 +39,7 @@
 			</div>
 			<div class="col-sm-8 mb-2 mt-4">
 				<label for="cantHoras" class="form-label">Cantidad de Horas</label>
-				<input type="number" class="form-control" id="cantHoras" data-th-field="*{cantHoras}">
+				<input type="number" class="form-control" id="cantHoras" placeholder="Ingresar cantidad de horas, el minimo es 2" data-th-field="*{cantHoras}">
 				<p class="form-text text-danger" th:if="${#fields.hasErrors('cantHoras')}" th:errors="*{cantHoras}"></p>
 			</div>
 			<div class="col-sm-8 mb-2 mt-4">
@@ -52,6 +52,7 @@
 			<div class="mb-e col-sm-8 mb-2 mt-4">
 	            <label class="form-label">Docente</label>
 	            <select class="form-control" data-th-field="*{docente.legajo}" required>
+	            <option value="">Seleccionar Docente</option>
 	            	<option th:if="${band}" data-th-value="*{docente.legajo}" data-th-text="*{docente.legajo + ' ' + docente.nombre + ' ' + docente.apellido}"></option>
 	                <option data-th-each="Docente : ${docentes}" data-th-value="${Docente.legajo}" data-th-text="${Docente.legajo + ' ' + Docente.nombre + ' ' + Docente.apellido}"></option>
 	            </select>
@@ -59,6 +60,7 @@
 	        <div class="mb-e col-sm-8 mb-2 mt-4">
 	            <label class="form-label">Carrera</label>
 	            <select class="form-control" data-th-field="*{carrera.codigo}" required>
+	            <option value="">Seleccionar Carrera</option>
 	                <option data-th-each="Carrera : ${carreras}" data-th-value="${Carrera.codigo}" data-th-text="${Carrera.codigo + ' ' + Carrera.nombre}"></option>
 	            </select>
 	        </div>

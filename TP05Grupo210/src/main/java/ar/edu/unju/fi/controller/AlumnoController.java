@@ -1,7 +1,5 @@
 package ar.edu.unju.fi.controller;
 
-//import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -9,12 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-//import ar.edu.unju.fi.DTO.AlumnoDTO;
 import ar.edu.unju.fi.model.Alumno;
+import ar.edu.unju.fi.map.AlumnoMapDTO;
+import ar.edu.unju.fi.map.MateriaMapDTO;
+import ar.edu.unju.fi.map.CarreraMapDTO;
 import ar.edu.unju.fi.service.AlumnoService;
+import ar.edu.unju.fi.service.MateriaService;
+import ar.edu.unju.fi.service.CarreraService;
 import jakarta.validation.Valid;
 
 @Controller
@@ -23,7 +24,22 @@ public class AlumnoController {
 	Alumno nuevoAlumno;
 	
 	@Autowired
+	AlumnoMapDTO alumnoMapDTO;
+	
+	@Autowired
 	AlumnoService alumnoService;
+	
+	@Autowired
+	MateriaMapDTO materiaMapDTO;
+	
+	@Autowired
+	MateriaService materiaService;
+	
+	@Autowired
+	CarreraMapDTO carreraMapDTO;
+	
+	@Autowired
+	CarreraService carreraService;
 	
 	@GetMapping("/listaDeAlumnos")
 	public ModelAndView mostrarAlumnos() {
@@ -90,5 +106,26 @@ public class AlumnoController {
 		}
 		
 		return modelView;
+	}
+	
+	@GetMapping("/inscripcionMateria")
+	public ModelAndView inscripcionMateria() {
+		ModelAndView modelView = new ModelAndView("inscripcionMateria");
+		modelView.addObject("nuevoAlumno", nuevoAlumno);
+		modelView.addObject("materias", materiaMapDTO.convertirListaMateriasDTOListaMaterias(materiaService.mostrarMaterias()));
+		modelView.addObject("alumnos", alumnoMapDTO.convertirListaAlumnosDTOListaAlumnos(alumnoService.mostrarAlumnos()));
+		modelView.addObject("carreras", carreraMapDTO.convertirListaCarrerasDTOListaCarreras(carreraService.mostrarCarreras()));
+		
+		return modelView;
+	}
+	
+	@PostMapping("/guardarInscripcion")
+	public ModelAndView guardarInscripcion(@ModelAttribute ("nuevoAlumno") Alumno alumno) {
+		Alumno alumnoModificado = alumnoService.buscarAlumno(alumno.getDni());
+		alumnoModificado.setCarrera(alumno.getCarrera());
+		alumnoModificado.setMaterias(alumno.getMaterias());
+		alumnoService.modificarAlumno(alumnoModificado);
+		
+		return mostrarAlumnos();
 	}
 }

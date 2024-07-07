@@ -19,18 +19,24 @@
 
 	<div class="container-sm text-center">
 		<h1 class="mb-3 mt-2">INSCRIPCION A MATERIA</h1>
-		<form data-th-object="${nuevaMateria}" data-th-action="@{/guardarInscripcion}" method="post">
+		<form data-th-object="${nuevoAlumno}" data-th-action="@{/guardarInscripcion}" method="post">
 			<div class="d-flex flex-column align-items-center bg-dark text-light">
 				<div class="mt-4 mb-4 col-sm-8">
 					<label class="form-label">Alumnos</label>
-					<select class="form-control" data-th-field="*{alumnos}" required multiple>
+					<select class="form-control" data-th-field="*{dni}" required multiple>
 						<option data-th-each="Alumno : ${alumnos}" data-th-value="${Alumno.dni}" data-th-text="${Alumno.dni + ' ' + Alumno.nombre + ' ' + Alumno.apellido + ' ' + Alumno.LU}"></option>
 					</select>
 				</div>
 				<div class="mt-4 mb-4 col-sm-8">
 					<label class="form-label">Materias</label>
-					<select class="form-control" data-th-field="*{codigo}" required multiple>
+					<select class="form-control" data-th-field="*{materias}" required multiple>
 						<option data-th-each="Materia : ${materias}" data-th-value="${Materia.codigo}" data-th-text="${Materia.codigo + ' ' + Materia.nombre}"></option>
+					</select>
+				</div>
+				<div class="mt-4 mb-4 col-sm-8">
+					<label class="form-label">Carreras</label>
+					<select class="form-control" data-th-field="*{carrera.codigo}" required multiple>
+						<option data-th-each="Carrera : ${carreras}" data-th-value="${Carrera.codigo}" data-th-text="${Carrera.codigo + ' ' + Carrera.nombre}"></option>
 					</select>
 				</div>
 			</div>

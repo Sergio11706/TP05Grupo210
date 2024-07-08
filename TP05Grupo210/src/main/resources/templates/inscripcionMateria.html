@@ -25,7 +25,7 @@
 			<div class="d-flex flex-column align-items-center bg-dark text-light">
 				<div class="col-sm-9 mb-2 mt-4">
 					<label class="form-label">Alumnos</label>
-					<select class="form-control" data-th-field="*{dni}" required multiple>
+					<select class="form-control" data-th-field="*{dni}" required>
 						<option data-th-each="Alumno : ${alumnos}" data-th-value="${Alumno.dni}" data-th-text="${Alumno.dni + ' ' + Alumno.nombre + ' ' + Alumno.apellido + ' ' + Alumno.LU}"></option>
 					</select>
 				</div>

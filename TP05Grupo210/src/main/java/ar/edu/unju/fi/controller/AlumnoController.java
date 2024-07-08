@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,6 +48,8 @@ public class AlumnoController {
 	@Autowired
 	CarreraService carreraService;
 	
+	List<String> dnis = new ArrayList<>();
+	
 	@GetMapping("/listaDeAlumnos")
 	public ModelAndView mostrarAlumnos() {
 	    ModelAndView modelView = new ModelAndView("listaDeAlumnos");
@@ -72,10 +75,15 @@ public class AlumnoController {
 		
 		ModelAndView modelView = new ModelAndView(); 
 		
-		if (result.hasErrors()) {
+		if (result.hasErrors() || dnis.contains(alumno.getDni())) {
+			if (dnis.contains(alumno.getDni())) {
+	            result.rejectValue("dni", "error.alumno", "El dni ya existe. Por favor, elija otro");
+	        }
+
 			modelView.setViewName("formAlumno");
 		}
 		else {
+			dnis.add(alumno.getDni());
 			alumnoService.guardarAlumno(alumno);
 			modelView = mostrarAlumnos();
 		}

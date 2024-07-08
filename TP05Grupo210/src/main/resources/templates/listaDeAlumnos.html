@@ -21,20 +21,22 @@
 	</header>
 
 	<div class="d-flex flex-row justify-content-around pt-3">		
-		<form class="form-inline">
+		<form class="form-inline"  data-th-object="${filtrarMateria}" data-th-action="@{/filtrar}" method="post">
 			<div class="form-group mx-sm-3 mb-2">
 				<label for="materia" class="sr-only">Materia</label>
-				<select class="form-control" id="materia" name="materia">
-					<option>Seleccione una materia</option>
+				<select class="form-control" id="materia" name="materia" data-th-field="*{codigo}">
+					<option value="">Seleccione una materia</option>
+					<option data-th-each="Materia : ${materias}" data-th-value="${Materia.codigo}" data-th-text="${Materia.nombre}"></option>
 				</select>
 			</div>
 			<button type="submit" class="btn btn-primary mb-2">Filtrar</button>
 		</form>
-		<form class="form-inline"> 
+		<form class="form-inline" data-th-object="${filtrarCarrera}" data-th-action="@{/filtrar}" method="post"> 
 			<div class="form-group mx-sm-3 mb-2">
 				<label for="carrera" class="sr-only">Carrera</label>
-				<select class="form-control" id="carrera" name="carrera">
-					<option>Seleccione una carrera</option>
+				<select class="form-control" id="carrera" name="carrera" data-th-field="*{codigo}">
+					<option value="">Seleccione Carrera</option>
+					<option data-th-each="Carrera : ${carreras}" data-th-value="${Carrera.codigo}" data-th-text="${Carrera.nombre}"></option>
 				</select>
 			</div>
 			<button type="submit" class="btn btn-primary mb-2">Consultar</button>
@@ -79,7 +81,7 @@
 	                        <li data-th-each="Carrera : ${AlumnoDTO.carreraDTO}" data-th-text="${Carrera.codigo + ' ' + Carrera.nombre}"></li>
 	                    </ul>
 	                </td>
-	                    
+	                
 					<td class="pl-md-2 pr-md-2 pt-md-2 pb-md-2">
 						<a data-th-href="@{'/eliminarAlumno/' +${AlumnoDTO.dniDTO}}" class="btn btn-danger mr-sm-2">Eliminar</a>
 	

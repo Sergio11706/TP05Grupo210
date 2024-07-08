@@ -1,5 +1,8 @@
 package ar.edu.unju.fi.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -20,6 +23,8 @@ public class DocenteController {
 	
 	@Autowired
 	DocenteService docenteService;
+	
+	List<String> legajos = new ArrayList<>();
 	
 	@GetMapping("/listaDeDocentes")
 	public ModelAndView mostrarDocentes() {
@@ -44,11 +49,16 @@ public class DocenteController {
 		
 		  ModelAndView modelView = new ModelAndView();
 
-		  if (result.hasErrors()) {
+		  if (result.hasErrors() || legajos.contains(docente.getLegajo())) {
+			  
+			  if (legajos.contains(docente.getLegajo())) {
+				result.rejectValue("legajo", "error.docente","El legajo ya existe. Por favor, proporcione otro.");
+			}
 			  modelView.setViewName("formDocente");
 		  }
 		  else {
 			  //guardar docente
+			  legajos.add(docente.getLegajo());
 			  docenteService.guardarDocente(docente);
 			  
 			  //mostrar docente
@@ -63,12 +73,10 @@ public class DocenteController {
 	public ModelAndView BorrarDocente(@PathVariable(name="legajo") String legajo) {
 		//borrar docente
 		docenteService.borrarDocente(legajo);
+		legajos.remove(legajo);
 		
 		//mostrar docente
-		ModelAndView modelView = new ModelAndView("listaDeDocentes");
-		modelView.addObject("ListadoDocentes", docenteService.mostrarDocentes());
-		
-		return modelView;
+		return mostrarDocentes();
 	}
 	
 	@GetMapping("/modificarDocente/{legajo}")

@@ -37,7 +37,7 @@
 				</div>
 				<div class="col-sm-9 mb-5 mt-2">
 					<label class="form-label">Carreras</label>
-					<select class="form-control" data-th-field="*{carrera.codigo}" required multiple>
+					<select class="form-control" data-th-field="*{carrera.codigo}" required>
 						<option data-th-each="Carrera : ${carreras}" data-th-value="${Carrera.codigo}" data-th-text="${Carrera.codigo + ' ' + Carrera.nombre}"></option>
 					</select>
 				</div>

@@ -8,9 +8,7 @@ import org.springframework.stereotype.Service;
 import ar.edu.unju.fi.DTO.CarreraDTO;
 import ar.edu.unju.fi.map.CarreraMapDTO;
 import ar.edu.unju.fi.model.Carrera;
-import ar.edu.unju.fi.repository.AlumnoRepository;
 import ar.edu.unju.fi.repository.CarreraRepository;
-import ar.edu.unju.fi.repository.MateriaRepository;
 import ar.edu.unju.fi.service.CarreraService;
 
 @Service

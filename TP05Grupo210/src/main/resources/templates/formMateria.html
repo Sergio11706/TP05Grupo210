@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
 <meta name="viewport" content="	width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="/css/styles.css">
 
 <title>FormularioMateria</title>
 </head>
@@ -15,12 +15,13 @@
 		</div>
 		<div data-th-replace="~{fragments/navbar :: navbar}">
 		</div>
+		<div class="separator2"></div>
+		<div class="separator"></div>
 	</header>
 
 	<div class="container text-center">
 		<h1 class="mb-3 mt-2">FORMULARIO MATERIA</h1>
 		<form data-th-object = "${nuevaMateria}" data-th-action="${band}?@{/modificarMateria}:@{/guardarMateria}" method="post">
-		
 		<div class="d-flex flex-column align-items-center bg-dark text-light">
 			<div class="col-sm-8 mb-2 mt-4">
 				<label for="codigo" class="form-label">Codigo</label> 
@@ -69,11 +70,12 @@
 		</div>
 		
 			<button type="submit" class="btn btn-primary col-sm-4 mt-3 mb-3" >Guardar</button>
-		
 		</form>
 	</div>
 
 	<footer>
+		<div class="separator"></div>
+		<div class="separator2"></div>
 		<div data-th-replace="~{fragments/footer :: footer}">
 		</div>
 	</footer>

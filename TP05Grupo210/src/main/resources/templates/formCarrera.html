@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" >
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
 <meta name="viewport" content="	width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="/css/styles.css">
 <title>FormularioCarrera</title>
 </head>
 <body>
@@ -13,62 +13,58 @@
 		</div>
 		<div data-th-replace="~{fragments/navbar :: navbar}">
 		</div>
+		<div class="separator2"></div>
+		<div class="separator"></div>
 	</header>
-<br>
-<div class="container text-center">
+	<div class="container text-center">
 		<h1 class="mb-3 mt-2">FORMULARIO CARRERA</h1>
 
-	<form data-th-object="${nuevaCarrera}" data-th-action="${band}?@{/modificarCarrera}:@{/guardarCarrera}" method="post">
-	    <div class="d-flex flex-column align-items-center bg-dark text-light">
-		<div class="col-sm-8 mb-2 mt-4">
-			<label for="codigo" class="form-label">Codigo</label> 
-			<input type="text" class="form-control" id="codigo" data-th-field="*{codigo}" data-th-readonly="${band}"  placeholder="Ingrese un codigo">
-			<p class="form-text text-danger" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></p>
-			
-		</div>
+		<form data-th-object="${nuevaCarrera}" data-th-action="${band}?@{/modificarCarrera}:@{/guardarCarrera}" method="post">
+	    	<div class="d-flex flex-column align-items-center bg-dark text-light">
+				<div class="col-sm-9 mb-2 mt-4">
+					<label for="codigo" class="form-label">Codigo</label> 
+					<input type="text" class="form-control" id="codigo" data-th-field="*{codigo}" data-th-readonly="${band}"  placeholder="Ingrese un codigo">
+					<p class="form-text text-danger" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></p>
+				</div>
+				<div class="col-sm-9 mb-2 mt-2">
+					<label for="nombre" class="form-label">Nombre</label>
+					<input type="text" class="form-control" id="nombre" data-th-field="*{nombre}"  placeholder="Ingrese un nombre">
+					<p class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>
+				</div>
 		
-		<div class="col-sm-8 mb-2 mt-4">
-			<label for="nombre" class="form-label">Nombre</label>
-			<input type="text" class="form-control" id="nombre" data-th-field="*{nombre}"  placeholder="Ingrese un nombre">
-			<p class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>
-		</div>
+				<div class="col-sm-9 mb-5 mt-2">
+					<label for="años" class="form-label">Cantidad de Años</label>
+					<input type="number" class="form-control" id="años" data-th-field="*{cantAnios}" >
+					<p class="form-text text-danger" th:if="${#fields.hasErrors('cantAnios')}" th:errors="*{cantAnios}"></p>
+				</div>
 		
-		<div class="col-sm-8 mb-2 mt-4">
-			<label for="años" class="form-label">Cantidad de Años</label>
-			<input type="number" class="form-control" id="años" data-th-field="*{cantAnios}" >
-			<p class="form-text text-danger" th:if="${#fields.hasErrors('cantAnios')}" th:errors="*{cantAnios}"></p>
-		</div>
-		
-		<!-- 
-		<div class="col-sm-8 mb-2 mt-4">
-	        <label class="form-label">Materias</label>
-	        <select class="form-control" data-th-field="*{materias}" required multiple>
-	            <option data-th-each="materias : ${materias}" data-th-value="${materias.codigo}" 
-	            data-th-text="${materias.nombre + ' ' + materias.curso}"></option>
-	        </select>
-	    </div>
+				<!-- 
+				<div class="col-sm-9 mb-2 mt-2">
+	        		<label class="form-label">Materias</label>
+	        		<select class="form-control" data-th-field="*{materias}" required multiple>
+	            		<option data-th-each="materias : ${materias}" data-th-value="${materias.codigo}" 
+	            		data-th-text="${materias.nombre + ' ' + materias.curso}"></option>
+	        		</select>
+	    		</div>
 	    
-	    <div class="col-sm-8 mb-2 mt-4">
-	         <label class="form-label">Alumnos</label>
-	         <select class="form-control" data-th-field="*{alumnos}" required multiple>
-	              <option data-th-each="alumnos : ${alumnos}" data-th-value="${alumnos.dni}" 
-	              data-th-text="${alumnos.dni + ' ' + alumnos.nombre + ' ' + alumnos.apellido}"></option>
-	         </select>
-	   </div>
-	    -->
-	<br>
-		
-		<br>
-		</div>
-		<button type="submit" class="btn btn-primary col-sm-4 mt-3 mb-3" >Guardar</button>
-	</form>
-	
+	    		<div class="col-sm-9 mb-2 mt-2">
+	         		<label class="form-label">Alumnos</label>
+	         		<select class="form-control" data-th-field="*{alumnos}" required multiple>
+	              		<option data-th-each="alumnos : ${alumnos}" data-th-value="${alumnos.dni}" 
+	              		data-th-text="${alumnos.dni + ' ' + alumnos.nombre + ' ' + alumnos.apellido}"></option>
+	         		</select>
+				</div>
+	    		-->
+			</div>
+			<button type="submit" class="btn btn-primary col-sm-4 mt-3 mb-3" >Guardar</button>
+		</form>
 	</div>
 
-<br><br>
-
-<footer>
-		<div th:replace="~{fragments/footer :: footer}"></div>
+	<footer>
+		<div class="separator"></div>
+		<div class="separator2"></div>
+		<div th:replace="~{fragments/footer :: footer}">
+		</div>
 	</footer>
 
 

@@ -5,6 +5,14 @@
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>TP05 Grupo210</title>
+    
+    <style>
+    	.separator2 {
+			height: 1px;
+			background-color: #ccc;
+			margin: 15px 0;
+		}
+    </style>
 </head>
 <body>
 	<header>
@@ -12,6 +20,7 @@
 		</div>
 		<div data-th-replace="~{fragments/navbar :: navbar}">
 		</div>
+		<div class="separator2"></div>
 	</header>
 	
 	<div class="container mt-5 mb-5" id="inicio">
@@ -59,6 +68,7 @@
 	</div>
 
 	<footer>
+		<div class="separator2"></div>
 		<div data-th-replace="~{fragments/footer :: footer}">
 		</div>
 	</footer>

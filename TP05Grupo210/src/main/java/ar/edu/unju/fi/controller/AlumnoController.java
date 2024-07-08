@@ -49,6 +49,8 @@ public class AlumnoController {
 	CarreraService carreraService;
 	
 	List<String> dnis = new ArrayList<>();
+	List<String> telefonos = new ArrayList<>();
+	List<String> lus = new ArrayList<>();
 	
 	@GetMapping("/listaDeAlumnos")
 	public ModelAndView mostrarAlumnos() {
@@ -77,7 +79,7 @@ public class AlumnoController {
 		
 		if (result.hasErrors() || dnis.contains(alumno.getDni())) {
 			if (dnis.contains(alumno.getDni())) {
-	            result.rejectValue("dni", "error.alumno", "El dni ya existe. Por favor, elija otro");
+	            result.rejectValue("dni", "error.alumno", "El DNI ya existe. Por favor, elija otro");
 	        }
 
 			modelView.setViewName("formAlumno");
